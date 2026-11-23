@@ -2,9 +2,12 @@ import cv2
 import requests
 import time
 from deepface import DeepFace
+import os
 
-
-BACKEND_URL = "http://localhost:5000/api/employees"
+BACKEND_URL = os.getenv(
+    "BACKEND_URL",
+    "http://localhost:5000/api"
+) + "/employees"
 
 EMPLOYEE_ID = "EMP001"
 

@@ -11,16 +11,23 @@ from pydantic import BaseModel
 from deepface import DeepFace
 from recognize_face import recognize_frame
 
+import os
 
 app = FastAPI(title="Face Attendance AI Service")
 
-BACKEND_URL = "http://localhost:5000/api"
+BACKEND_URL = os.getenv(
+    "BACKEND_URL",
+    "http://localhost:5000/api"
+)
 
 
 # CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=[
+    "http://localhost:5173",
+    os.getenv("FRONTEND_URL", "")
+],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

@@ -1,0 +1,9 @@
+fastapi==0.162.0
+uvicorn==0.54.0
+deepface==0.0.103
+opencv-contrib-python==5.0.0.93
+numpy==2.5.4
+requests==2.34.2
+pydantic==2.14.1
+onnxruntime==1.31.1
+retina-face==0.0.19

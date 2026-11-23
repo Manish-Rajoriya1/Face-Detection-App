@@ -5,7 +5,10 @@ import time
 
 from deepface import DeepFace
 
-
+import requests
+import numpy as np
+import time
+import os
 
 # Employee cache
 EMPLOYEE_CACHE = []
@@ -13,7 +16,10 @@ CACHE_TIME = 0
 CACHE_DURATION = 30
 
 
-BACKEND_URL = "http://localhost:5000/api"
+BACKEND_URL = os.getenv(
+    "BACKEND_URL",
+    "http://localhost:5000/api"
+)
 
 MODEL_NAME = "Facenet512"
 DETECTOR_BACKEND = "opencv"
