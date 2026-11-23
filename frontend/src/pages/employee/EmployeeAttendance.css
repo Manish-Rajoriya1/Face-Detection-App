@@ -1,0 +1,742 @@
+.employee-attendance-page {
+    width: 100%;
+}
+
+.attendance-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.attendance-page-tag {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #0d9488;
+}
+
+.attendance-page-header h2 {
+    margin: 6px 0;
+    font-size: 30px;
+    font-weight: 700;
+    color: #172033;
+}
+
+.attendance-page-header p {
+    margin: 0;
+    color: #7b8495;
+    font-size: 14px;
+}
+
+.attendance-date-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    background: #ffffff;
+    border: 1px solid #e8ebf0;
+    border-radius: 14px;
+}
+
+.attendance-date-box>i {
+    font-size: 22px;
+    color: #0d9488;
+}
+
+.attendance-date-box div {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.attendance-date-box span {
+    font-size: 11px;
+    color: #8a93a3;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.attendance-date-box strong {
+    font-size: 13px;
+    color: #303848;
+}
+
+
+/* EMPLOYEE CARD */
+
+.attendance-employee-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 22px;
+    background: linear-gradient(135deg, #0d9488, #0f766e);
+    border-radius: 18px;
+    color: white;
+    margin-bottom: 22px;
+}
+
+.attendance-employee-avatar {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.attendance-employee-info {
+    flex: 1;
+}
+
+.attendance-employee-info span {
+    font-size: 10px;
+    letter-spacing: 1.4px;
+    opacity: 0.75;
+}
+
+.attendance-employee-info h3 {
+    margin: 4px 0;
+    font-size: 20px;
+}
+
+.attendance-employee-info p {
+    margin: 0;
+    font-size: 13px;
+    opacity: 0.85;
+}
+
+.attendance-status-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 13px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.14);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #d6d9df;
+}
+
+.status-dot.present {
+    background: #7ff0b0;
+}
+
+
+/* ALERTS */
+
+.attendance-alert {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 16px;
+    border-radius: 12px;
+    margin-bottom: 18px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.attendance-alert.success {
+    background: #ecfdf5;
+    color: #047857;
+    border: 1px solid #bbf7d0;
+}
+
+.attendance-alert.error {
+    background: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+}
+
+
+/* TIME CARDS */
+
+.attendance-time-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 22px;
+}
+
+.attendance-time-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 22px;
+    background: #ffffff;
+    border: 1px solid #e8ebf0;
+    border-radius: 16px;
+    transition: 0.25s ease;
+}
+
+.attendance-time-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+}
+
+.attendance-time-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ecfdf5;
+    color: #0d9488;
+    font-size: 20px;
+}
+
+.attendance-time-card span {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #8a93a3;
+}
+
+.attendance-time-card h3 {
+    margin: 5px 0 2px;
+    font-size: 23px;
+    color: #202838;
+}
+
+.attendance-time-card p {
+    margin: 0;
+    font-size: 12px;
+    color: #9299a7;
+}
+
+
+/* ACTION PANEL */
+
+.attendance-action-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    padding: 25px;
+    background: #ffffff;
+    border: 1px solid #e8ebf0;
+    border-radius: 18px;
+    margin-bottom: 22px;
+    margin-top: 10px !important;
+}
+
+.attendance-action-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.attendance-action-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0fdfa;
+    color: #0d9488;
+    font-size: 24px;
+}
+
+.attendance-action-content h3 {
+    margin: 0 0 5px;
+    color: #202838;
+    font-size: 17px;
+}
+
+.attendance-action-content p {
+    margin: 0;
+    color: #8a93a3;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.attendance-checkin-button,
+.attendance-checkout-button {
+    border: none;
+    padding: 13px 22px;
+    border-radius: 11px;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    transition: 0.2s ease;
+}
+
+.attendance-checkin-button {
+    background: #0d9488;
+}
+
+.attendance-checkin-button:hover {
+    background: #0f766e;
+    transform: translateY(-2px);
+}
+
+.attendance-checkout-button {
+    background: #dc2626;
+}
+
+.attendance-checkout-button:hover {
+    background: #b91c1c;
+    transform: translateY(-2px);
+}
+
+.attendance-checkin-button:disabled,
+.attendance-checkout-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/* INFORMATION */
+
+.attendance-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.attendance-info-card {
+    display: flex;
+    gap: 14px;
+    padding: 20px;
+    background: #ffffff;
+    border: 1px solid #e8ebf0;
+    border-radius: 16px;
+}
+
+.attendance-info-icon {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0fdfa;
+    color: #0d9488;
+    font-size: 18px;
+}
+
+.attendance-info-card h4 {
+    margin: 0 0 5px;
+    font-size: 14px;
+    color: #303848;
+}
+
+.attendance-info-card p {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #8a93a3;
+}
+
+
+/* LOADING */
+
+.attendance-loading {
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border: 1px solid #e8ebf0;
+    border-radius: 18px;
+}
+
+.attendance-spinner {
+    width: 35px;
+    height: 35px;
+    border: 3px solid #d9f3ef;
+    border-top-color: #0d9488;
+    border-radius: 50%;
+    animation: attendanceSpin 0.8s linear infinite;
+}
+
+.attendance-loading p {
+    margin-top: 12px;
+    font-size: 13px;
+    color: #8a93a3;
+}
+
+@keyframes attendanceSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+
+    .attendance-page-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .attendance-time-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .attendance-action-panel {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .attendance-action-buttons {
+        width: 100%;
+    }
+
+    .attendance-checkin-button,
+    .attendance-checkout-button {
+        justify-content: center;
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .attendance-employee-card {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .attendance-status-badge {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .attendance-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .attendance-date-box {
+        width: 100%;
+    }
+
+    .attendance-action-content {
+        align-items: flex-start;
+    }
+}
+
+/* =========================================
+   FACE ATTENDANCE
+========================================= */
+
+.face-attendance-panel {
+    margin-top: 24px;
+    padding: 28px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.06);
+}
+
+.face-attendance-heading {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.face-attendance-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ecfeff;
+    color: #0d9488;
+    font-size: 24px;
+}
+
+.face-attendance-heading h3 {
+    margin: 0 0 5px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.face-attendance-heading p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+
+/* =========================================
+   START FACE SECTION
+========================================= */
+
+.face-start-section {
+    text-align: center;
+    padding: 35px 20px;
+    border: 1px dashed #cbd5e1;
+    border-radius: 16px;
+    background: #f8fafc;
+}
+
+.face-preview-icon {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e6fffb;
+    color: #0d9488;
+    font-size: 30px;
+}
+
+.face-start-section h4 {
+    margin: 0 0 8px;
+    color: #111827;
+    font-size: 18px;
+}
+
+.face-start-section p {
+    max-width: 500px;
+    margin: 0 auto 20px;
+    color: #6b7280;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.face-start-button {
+    border: none;
+    border-radius: 10px;
+    padding: 12px 22px;
+    background: #0d9488;
+    color: #ffffff;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    transition: 0.25s ease;
+}
+
+.face-start-button:hover {
+    background: #0f766e;
+    transform: translateY(-2px);
+}
+
+.face-start-button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/* =========================================
+   CAMERA
+========================================= */
+
+.face-camera-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.face-camera-frame {
+    position: relative;
+    width: min(100%, 640px);
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 18px;
+    background: #111827;
+    box-shadow: 0 15px 35px rgba(15, 23, 42, 0.18);
+}
+
+.face-camera-frame video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transform: scaleX(-1);
+}
+
+
+/* =========================================
+   FACE SCAN OVERLAY
+========================================= */
+
+.face-scan-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.face-corner {
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    border-color: #ffffff;
+    border-style: solid;
+}
+
+.face-corner.top-left {
+    top: 25%;
+    left: 30%;
+    border-width: 3px 0 0 3px;
+}
+
+.face-corner.top-right {
+    top: 25%;
+    right: 30%;
+    border-width: 3px 3px 0 0;
+}
+
+.face-corner.bottom-left {
+    bottom: 25%;
+    left: 30%;
+    border-width: 0 0 3px 3px;
+}
+
+.face-corner.bottom-right {
+    bottom: 25%;
+    right: 30%;
+    border-width: 0 3px 3px 0;
+}
+
+.face-scan-line {
+    position: absolute;
+    left: 30%;
+    right: 30%;
+    top: 27%;
+    height: 2px;
+    background: #14b8a6;
+    box-shadow: 0 0 12px rgba(20, 184, 166, 0.9);
+    animation: faceScan 2s ease-in-out infinite;
+}
+
+@keyframes faceScan {
+    0% {
+        top: 27%;
+        opacity: 0.4;
+    }
+
+    50% {
+        top: 70%;
+        opacity: 1;
+    }
+
+    100% {
+        top: 27%;
+        opacity: 0.4;
+    }
+}
+
+
+/* =========================================
+   CAMERA BUTTONS
+========================================= */
+
+.face-camera-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.face-verify-button,
+.face-cancel-button {
+    border: none;
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: 0.25s ease;
+}
+
+.face-verify-button {
+    background: #0d9488;
+    color: #ffffff;
+}
+
+.face-verify-button:hover {
+    background: #0f766e;
+    transform: translateY(-2px);
+}
+
+.face-cancel-button {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+.face-cancel-button:hover {
+    background: #e2e8f0;
+}
+
+.face-verify-button:disabled,
+.face-cancel-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .face-attendance-panel {
+        padding: 20px;
+    }
+
+    .face-camera-frame {
+        width: 100%;
+    }
+
+    .face-corner.top-left,
+    .face-corner.bottom-left {
+        left: 20%;
+    }
+
+    .face-corner.top-right,
+    .face-corner.bottom-right {
+        right: 20%;
+    }
+
+    .face-scan-line {
+        left: 20%;
+        right: 20%;
+    }
+
+    .face-camera-actions {
+        width: 100%;
+    }
+
+    .face-verify-button,
+    .face-cancel-button {
+        width: 100%;
+    }
+}

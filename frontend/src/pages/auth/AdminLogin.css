@@ -1,0 +1,569 @@
+@import url("https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap");
+
+/* ---------- Design tokens ---------- */
+.admin-login-page {
+    --al-bg: #e9eef5;
+    --al-grid: rgba(35, 71, 213, 0.07);
+    --al-card: #ffffff;
+    --al-ink: #14213d;
+    --al-muted: #5b6b82;
+    --al-border: #d3dce8;
+    --al-primary: #2347d5;
+    --al-primary-dark: #1a37a8;
+    --al-primary-soft: rgba(35, 71, 213, 0.14);
+    --al-visual: #1b2f9a;
+    --al-error: #b42318;
+    --al-error-bg: #fdecea;
+    --al-error-border: #f5c2bd;
+}
+
+/* ---------- Page ---------- */
+.admin-login-page {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 16px;
+    box-sizing: border-box;
+    font-family: "Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+    color: var(--al-ink);
+    background-color: var(--al-bg);
+    background-image:
+        linear-gradient(var(--al-grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--al-grid) 1px, transparent 1px);
+    background-size: 36px 36px;
+}
+
+.admin-login-page *,
+.admin-login-page *::before,
+.admin-login-page *::after {
+    box-sizing: border-box;
+}
+
+/* ---------- Card: two columns ---------- */
+.admin-login-card {
+    width: 100%;
+    max-width: 960px;
+    height: min(580px, 100%);
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    background: var(--al-card);
+    border: 1px solid var(--al-border);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px -28px rgba(20, 33, 61, 0.35);
+}
+
+/* =========================================================
+   LEFT: illustration panel
+   ========================================================= */
+.admin-login-visual {
+    position: relative;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 44px 40px 36px;
+    color: #fff;
+    background-color: var(--al-visual);
+    /* soft dotted texture */
+    background-image: radial-gradient(rgba(255, 255, 255, 0.13) 1.2px,
+            transparent 1.2px);
+    background-size: 22px 22px;
+}
+
+.visual-copy h1 {
+    margin: 0 0 12px;
+    max-width: 14ch;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+}
+
+.visual-copy p {
+    margin: 0;
+    max-width: 34ch;
+    font-size: 15px;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.78);
+}
+
+.visual-stage {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scan-illustration {
+    display: block;
+    height: 100%;
+    max-width: 100%;
+}
+
+/* --- SVG parts --- */
+.ill-ring {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.16);
+    stroke-width: 1.5;
+}
+
+.ill-body {
+    fill: rgba(255, 255, 255, 0.16);
+}
+
+.ill-head {
+    fill: #dbe4ff;
+}
+
+.ill-feature {
+    fill: var(--al-visual);
+}
+
+.ill-mouth {
+    stroke: var(--al-visual);
+    stroke-width: 3;
+    stroke-linecap: round;
+}
+
+.ill-dots circle {
+    fill: var(--al-primary);
+    opacity: 0.85;
+}
+
+.ill-corners path {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 4;
+    stroke-linecap: round;
+}
+
+.ill-scanline {
+    fill: #fff;
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.95));
+    animation: ill-scan 3.2s ease-in-out infinite;
+}
+
+@keyframes ill-scan {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+
+    12% {
+        opacity: 1;
+    }
+
+    88% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(176px);
+        opacity: 0;
+    }
+}
+
+/* --- floating info chips --- */
+.visual-chip {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 13px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--al-ink);
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 12px 24px -10px rgba(5, 12, 50, 0.55);
+    white-space: nowrap;
+}
+
+.chip-match {
+    top: 14%;
+    right: -4%;
+}
+
+.chip-match svg {
+    color: #16a34a;
+    font-size: 15px;
+}
+
+.chip-time {
+    bottom: 10%;
+    left: -4%;
+}
+
+.chip-time svg {
+    color: var(--al-primary);
+    font-size: 14px;
+}
+
+/* =========================================================
+   RIGHT: form panel
+   ========================================================= */
+.admin-login-panel {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 36px 48px 24px;
+    overflow-y: auto;
+}
+
+/* ---------- Logo (small, left aligned) ---------- */
+.admin-login-logo {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: #fff;
+    background: var(--al-primary);
+    border-radius: 13px;
+}
+
+/* ---------- Heading ---------- */
+.admin-login-heading {
+    margin-bottom: 26px;
+}
+
+.admin-login-heading h2 {
+    margin: 0 0 6px;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--al-ink);
+}
+
+.admin-login-heading p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--al-muted);
+}
+
+/* ---------- Error ---------- */
+.admin-login-error {
+    margin-bottom: 18px;
+    padding: 11px 14px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--al-error);
+    background: var(--al-error-bg);
+    border: 1px solid var(--al-error-border);
+    border-left: 4px solid var(--al-error);
+    border-radius: 8px;
+}
+
+/* ---------- Form ---------- */
+.admin-form-group {
+    margin-bottom: 18px;
+}
+
+.admin-form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--al-ink);
+}
+
+.admin-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 48px;
+    padding: 0 12px;
+    background: #f7f9fc;
+    border: 1.5px solid var(--al-border);
+    border-radius: 10px;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.admin-input-wrapper>svg {
+    flex-shrink: 0;
+    font-size: 15px;
+    color: var(--al-muted);
+    transition: color 0.15s ease;
+}
+
+.admin-input-wrapper:hover {
+    border-color: #b8c5d8;
+}
+
+.admin-input-wrapper:focus-within {
+    background: #fff;
+    border-color: var(--al-primary);
+    box-shadow: 0 0 0 4px var(--al-primary-soft);
+}
+
+.admin-input-wrapper:focus-within>svg {
+    color: var(--al-primary);
+}
+
+.admin-input-wrapper input {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    padding: 0;
+    font: inherit;
+    font-size: 15px;
+    color: var(--al-ink);
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+.admin-input-wrapper input::placeholder {
+    color: #94a3b8;
+}
+
+.admin-input-wrapper input:-webkit-autofill {
+    -webkit-text-fill-color: var(--al-ink);
+    box-shadow: 0 0 0 40px #fff inset;
+}
+
+/* ---------- Show / hide password ---------- */
+.password-toggle {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    font-size: 15px;
+    color: var(--al-muted);
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.password-toggle:hover {
+    color: var(--al-primary);
+    background: var(--al-primary-soft);
+}
+
+.password-toggle:focus-visible {
+    outline: 2px solid var(--al-primary);
+    outline-offset: 1px;
+}
+
+/* ---------- Submit button ---------- */
+.admin-login-button {
+    width: 100%;
+    height: 48px;
+    margin-top: 6px;
+    font: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    background: var(--al-primary);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+}
+
+.admin-login-button:hover:not(:disabled) {
+    background: var(--al-primary-dark);
+    box-shadow: 0 8px 18px -8px rgba(35, 71, 213, 0.7);
+}
+
+.admin-login-button:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
+.admin-login-button:focus-visible {
+    outline: 3px solid var(--al-primary-soft);
+    outline-offset: 2px;
+}
+
+.admin-login-button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+/* ---------- Employee switch (when you un-comment it) ---------- */
+.login-switch-wrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 22px;
+    font-size: 14px;
+}
+
+.login-switch-text {
+    color: var(--al-muted);
+}
+
+.login-switch-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    color: var(--al-primary);
+    text-decoration: none;
+}
+
+.login-switch-link:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Footer ---------- */
+.admin-login-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 28px;
+    padding-top: 16px;
+    font-size: 12.5px;
+    color: var(--al-muted);
+    border-top: 1px solid var(--al-border);
+}
+
+.admin-login-footer span:first-child {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-weight: 600;
+}
+
+.admin-login-footer span:first-child::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #16a34a;
+}
+
+/* ---------- Short laptop screens ---------- */
+@media (max-height: 700px) {
+    .admin-login-panel {
+        padding: 24px 44px 18px;
+    }
+
+    .admin-login-logo {
+        width: 44px;
+        height: 44px;
+        margin-bottom: 12px;
+        font-size: 19px;
+    }
+
+    .admin-login-heading {
+        margin-bottom: 16px;
+    }
+
+    .admin-login-heading h2 {
+        font-size: 24px;
+    }
+
+    .admin-form-group {
+        margin-bottom: 12px;
+    }
+
+    .admin-input-wrapper,
+    .admin-login-button {
+        height: 44px;
+    }
+
+    .admin-login-footer {
+        margin-top: 16px;
+        padding-top: 12px;
+    }
+
+    .admin-login-visual {
+        padding: 28px 32px 20px;
+    }
+
+    .visual-copy h1 {
+        font-size: 26px;
+    }
+}
+
+@media (max-height: 560px) {
+    .visual-copy p {
+        display: none;
+    }
+}
+
+/* ---------- Tablet: smaller illustration panel ---------- */
+@media (max-width: 960px) {
+    .admin-login-visual {
+        padding: 36px 28px 28px;
+    }
+
+    .visual-copy h1 {
+        font-size: 26px;
+    }
+
+    .admin-login-panel {
+        padding: 36px 32px 24px;
+    }
+
+    .chip-match {
+        right: 0;
+    }
+
+    .chip-time {
+        left: 0;
+    }
+}
+
+/* ---------- Mobile: illustration hides, form only ---------- */
+@media (max-width: 760px) {
+    .admin-login-card {
+        max-width: 440px;
+        height: auto;
+        max-height: 100%;
+        grid-template-columns: 1fr;
+    }
+
+    .admin-login-visual {
+        display: none;
+    }
+
+    .admin-login-panel {
+        padding: 32px 22px 22px;
+    }
+
+    .admin-login-heading h2 {
+        font-size: 24px;
+    }
+
+    .admin-login-footer {
+        flex-direction: column;
+        gap: 6px;
+        text-align: center;
+    }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .ill-scanline {
+        animation: none;
+        opacity: 1;
+        transform: translateY(88px);
+    }
+
+    .admin-input-wrapper,
+    .admin-login-button,
+    .password-toggle {
+        transition: none;
+    }
+}

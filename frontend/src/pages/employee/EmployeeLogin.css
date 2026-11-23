@@ -1,0 +1,573 @@
+@import url("https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap");
+
+/* ---------- Tokens ---------- */
+.employee-login-page {
+    --emp-bg: #e9eef5;
+    --emp-grid: rgba(35, 71, 213, 0.07);
+    --emp-ink: #14213d;
+    --emp-muted: #5b6b82;
+    --emp-border: #d3dce8;
+    --emp-primary: #2347d5;
+    --emp-primary-dark: #1a37a8;
+    --emp-primary-soft: rgba(35, 71, 213, 0.14);
+    --emp-visual: #1b2f9a;
+    --emp-error: #b42318;
+    --emp-error-bg: #fdecea;
+    --emp-error-border: #f5c2bd;
+}
+
+/* ---------- Page: fixed to the screen, so it can never scroll ---------- */
+.employee-login-page {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 16px;
+    font-family: "Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+    color: var(--emp-ink);
+    background-color: var(--emp-bg);
+    background-image:
+        linear-gradient(var(--emp-grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--emp-grid) 1px, transparent 1px);
+    background-size: 36px 36px;
+}
+
+.employee-login-page *,
+.employee-login-page *::before,
+.employee-login-page *::after {
+    box-sizing: border-box;
+}
+
+/* ---------- Card: two columns, never taller than the screen ---------- */
+.employee-login-card {
+    width: 100%;
+    max-width: 960px;
+    height: min(580px, 100%);
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    background: #fff;
+    border: 1px solid var(--emp-border);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px -28px rgba(20, 33, 61, 0.35);
+}
+
+/* =========================================================
+   LEFT: form
+   ========================================================= */
+.employee-login-panel {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 36px 48px 24px;
+    /* safety net: if a tiny screen is too short, scroll inside the card, not the page */
+    overflow-y: auto;
+}
+
+.employee-login-icon {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #fff;
+    background: var(--emp-primary);
+    border-radius: 13px;
+}
+
+.employee-login-panel h2 {
+    margin: 0 0 6px;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--emp-ink);
+}
+
+.employee-login-subtitle {
+    margin: 0 0 22px;
+    font-size: 14px;
+    color: var(--emp-muted);
+}
+
+/* ---------- Error ---------- */
+.employee-login-error {
+    margin-bottom: 16px;
+    padding: 10px 14px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--emp-error);
+    background: var(--emp-error-bg);
+    border: 1px solid var(--emp-error-border);
+    border-left: 4px solid var(--emp-error);
+    border-radius: 8px;
+}
+
+/* ---------- Form ---------- */
+.employee-form-group {
+    margin-bottom: 16px;
+}
+
+.employee-form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--emp-ink);
+}
+
+.employee-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 48px;
+    padding: 0 12px;
+    background: #f7f9fc;
+    border: 1.5px solid var(--emp-border);
+    border-radius: 10px;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.employee-input-wrapper>i {
+    flex-shrink: 0;
+    font-size: 16px;
+    color: var(--emp-muted);
+    transition: color 0.15s ease;
+}
+
+.employee-input-wrapper:hover {
+    border-color: #b8c5d8;
+}
+
+.employee-input-wrapper:focus-within {
+    background: #fff;
+    border-color: var(--emp-primary);
+    box-shadow: 0 0 0 4px var(--emp-primary-soft);
+}
+
+.employee-input-wrapper:focus-within>i {
+    color: var(--emp-primary);
+}
+
+.employee-input-wrapper input {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    padding: 0;
+    font: inherit;
+    font-size: 15px;
+    color: var(--emp-ink);
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+.employee-input-wrapper input::placeholder {
+    color: #94a3b8;
+}
+
+.employee-input-wrapper input:-webkit-autofill {
+    -webkit-text-fill-color: var(--emp-ink);
+    box-shadow: 0 0 0 40px #fff inset;
+}
+
+/* ---------- Show / hide password ---------- */
+.employee-password-toggle {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    font-size: 16px;
+    color: var(--emp-muted);
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.employee-password-toggle:hover {
+    color: var(--emp-primary);
+    background: var(--emp-primary-soft);
+}
+
+.employee-password-toggle:focus-visible {
+    outline: 2px solid var(--emp-primary);
+    outline-offset: 1px;
+}
+
+/* ---------- Submit ---------- */
+.employee-login-button {
+    width: 100%;
+    height: 48px;
+    margin-top: 6px;
+    font: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    background: var(--emp-primary);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+}
+
+.employee-login-button:hover:not(:disabled) {
+    background: var(--emp-primary-dark);
+    box-shadow: 0 8px 18px -8px rgba(35, 71, 213, 0.7);
+}
+
+.employee-login-button:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
+.employee-login-button:focus-visible {
+    outline: 3px solid var(--emp-primary-soft);
+    outline-offset: 2px;
+}
+
+.employee-login-button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+/* ---------- Admin switch (when you un-comment it) ---------- */
+.employee-login-page .login-switch-wrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 18px;
+    font-size: 14px;
+}
+
+.employee-login-page .login-switch-text {
+    color: var(--emp-muted);
+}
+
+.employee-login-page .login-switch-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    color: var(--emp-primary);
+    text-decoration: none;
+}
+
+.employee-login-page .login-switch-link:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Footer ---------- */
+.employee-login-footer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 22px;
+    padding-top: 14px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--emp-muted);
+    border-top: 1px solid var(--emp-border);
+}
+
+.employee-login-footer i {
+    color: #16a34a;
+    font-size: 14px;
+}
+
+/* =========================================================
+   RIGHT: illustration panel
+   ========================================================= */
+.emp-visual {
+    position: relative;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 40px 40px 28px;
+    color: #fff;
+    background-color: var(--emp-visual);
+    background-image: radial-gradient(rgba(255, 255, 255, 0.13) 1.2px,
+            transparent 1.2px);
+    background-size: 22px 22px;
+}
+
+.emp-visual-copy h1 {
+    margin: 0 0 10px;
+    max-width: 15ch;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.14;
+    letter-spacing: -0.025em;
+}
+
+.emp-visual-copy p {
+    margin: 0;
+    max-width: 34ch;
+    font-size: 15px;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.78);
+}
+
+/* stage takes whatever height is left, so the SVG always fits */
+.emp-visual-stage {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.emp-illustration {
+    height: 100%;
+    max-width: 100%;
+}
+
+/* --- SVG parts --- */
+.emp-ill-ring {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.16);
+    stroke-width: 1.5;
+}
+
+.emp-ill-strap {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.55);
+    stroke-width: 7;
+    stroke-linecap: round;
+}
+
+.emp-ill-badge {
+    fill: #fff;
+    filter: drop-shadow(0 18px 24px rgba(5, 12, 50, 0.4));
+}
+
+.emp-ill-slot {
+    fill: #c9d6ff;
+}
+
+.emp-ill-avatar {
+    fill: #dbe4ff;
+}
+
+.emp-ill-person {
+    fill: var(--emp-primary);
+}
+
+.emp-ill-corners path {
+    fill: none;
+    stroke: var(--emp-primary);
+    stroke-width: 4;
+    stroke-linecap: round;
+}
+
+.emp-ill-scanline {
+    fill: var(--emp-primary);
+    filter: drop-shadow(0 0 5px rgba(35, 71, 213, 0.9));
+    animation: emp-scan 3.2s ease-in-out infinite;
+}
+
+@keyframes emp-scan {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+
+    12% {
+        opacity: 1;
+    }
+
+    88% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(104px);
+        opacity: 0;
+    }
+}
+
+.emp-ill-name {
+    fill: var(--emp-ink);
+}
+
+.emp-ill-role {
+    fill: #c4cee0;
+}
+
+.emp-ill-day-done {
+    fill: #16a34a;
+}
+
+.emp-ill-tick {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.emp-ill-day-todo {
+    fill: none;
+    stroke: #b8c5d8;
+    stroke-width: 2;
+    stroke-dasharray: 3 3;
+}
+
+/* --- floating chips --- */
+.emp-chip {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 13px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--emp-ink);
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 12px 24px -10px rgba(5, 12, 50, 0.55);
+    white-space: nowrap;
+}
+
+.emp-chip-present {
+    top: 12%;
+    left: 2%;
+}
+
+.emp-chip-present i {
+    color: #16a34a;
+    font-size: 15px;
+}
+
+.emp-chip-time {
+    bottom: 12%;
+    right: 2%;
+}
+
+.emp-chip-time i {
+    color: var(--emp-primary);
+    font-size: 14px;
+}
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+
+/* short laptop screens: tighten everything so nothing is cut */
+@media (max-height: 700px) {
+    .employee-login-panel {
+        padding: 24px 44px 18px;
+    }
+
+    .employee-login-icon {
+        width: 44px;
+        height: 44px;
+        margin-bottom: 12px;
+        font-size: 20px;
+    }
+
+    .employee-login-panel h2 {
+        font-size: 24px;
+    }
+
+    .employee-login-subtitle {
+        margin-bottom: 14px;
+    }
+
+    .employee-form-group {
+        margin-bottom: 12px;
+    }
+
+    .employee-input-wrapper,
+    .employee-login-button {
+        height: 44px;
+    }
+
+    .employee-login-footer {
+        margin-top: 14px;
+        padding-top: 10px;
+    }
+
+    .emp-visual {
+        padding: 28px 36px 20px;
+    }
+
+    .emp-visual-copy h1 {
+        font-size: 26px;
+    }
+}
+
+@media (max-height: 560px) {
+    .emp-visual-copy p {
+        display: none;
+    }
+}
+
+/* tablet */
+@media (max-width: 960px) {
+    .employee-login-panel {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+
+    .emp-visual {
+        padding: 32px 28px 24px;
+    }
+
+    .emp-visual-copy h1 {
+        font-size: 24px;
+    }
+
+    .emp-chip-present {
+        left: 0;
+    }
+
+    .emp-chip-time {
+        right: 0;
+    }
+}
+
+/* mobile: illustration hides, form only */
+@media (max-width: 760px) {
+    .employee-login-card {
+        max-width: 440px;
+        height: auto;
+        max-height: 100%;
+        grid-template-columns: 1fr;
+    }
+
+    .emp-visual {
+        display: none;
+    }
+
+    .employee-login-panel {
+        padding: 28px 22px 20px;
+    }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .emp-ill-scanline {
+        animation: none;
+        opacity: 1;
+        transform: translateY(52px);
+    }
+
+    .employee-input-wrapper,
+    .employee-login-button,
+    .employee-password-toggle {
+        transition: none;
+    }
+}

@@ -1,0 +1,797 @@
+/* =========================================================
+   ADMIN ATTENDANCE SETTINGS
+========================================================= */
+
+/* MAIN PAGE */
+.attendance-settings-page {
+    width: 100% !important;
+    min-height: auto !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    background: transparent !important;
+}
+
+/* PAGE HEADER */
+.attendance-settings-page > div:first-child {
+    margin-bottom: 25px !important;
+}
+
+.attendance-settings-page > div:first-child h2 {
+    margin: 0 0 8px !important;
+    color: #172033 !important;
+    font-size: 28px !important;
+    font-weight: 750 !important;
+    letter-spacing: -0.4px !important;
+}
+
+.attendance-settings-page > div:first-child p {
+    margin: 0 !important;
+
+    color: #667085 !important;
+
+    font-size: 14px !important;
+
+    line-height: 1.5 !important;
+}
+
+
+/* =========================================================
+   SUCCESS / ERROR MESSAGE
+========================================================= */
+
+.attendance-settings-page>div[style*="ecfdf3"] {
+    padding: 12px 16px !important;
+
+    margin-bottom: 20px !important;
+
+    border-radius: 8px !important;
+
+    background: #ecfdf3 !important;
+
+    color: #027a48 !important;
+
+    border: 1px solid #bbf7d0 !important;
+
+    font-size: 13px !important;
+
+    font-weight: 500 !important;
+
+    box-sizing: border-box !important;
+}
+
+
+.attendance-settings-page>div[style*="fef3f2"] {
+    padding: 12px 16px !important;
+
+    margin-bottom: 20px !important;
+
+    border-radius: 8px !important;
+
+    background: #fef3f2 !important;
+
+    color: #b42318 !important;
+
+    border: 1px solid #fecaca !important;
+
+    font-size: 13px !important;
+
+    font-weight: 500 !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* =========================================================
+   SETTINGS CARD
+========================================================= */
+
+.attendance-settings-page .settings-card {
+    width: 100% !important;
+
+    box-sizing: border-box !important;
+
+    margin-bottom: 20px !important;
+
+    padding: 24px !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #e8ebf1 !important;
+
+    border-radius: 16px !important;
+
+    box-shadow:
+        0 4px 18px rgba(15, 23, 42, 0.05) !important;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease !important;
+}
+
+
+.attendance-settings-page .settings-card:hover {
+    transform: translateY(-1px) !important;
+
+    border-color: #dce2eb !important;
+
+    box-shadow:
+        0 8px 25px rgba(15, 23, 42, 0.08) !important;
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.attendance-settings-page .settings-card-header {
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: flex-start !important;
+
+    gap: 5px !important;
+
+    margin-bottom: 22px !important;
+
+    padding-bottom: 15px !important;
+
+    border-bottom: 1px solid #edf0f4 !important;
+}
+
+
+.attendance-settings-page .settings-card-header h3 {
+    margin: 0 !important;
+
+    color: #172033 !important;
+
+    font-size: 17px !important;
+
+    font-weight: 700 !important;
+
+    line-height: 1.4 !important;
+}
+
+
+.attendance-settings-page .settings-card-header p {
+    margin: 0 !important;
+
+    color: #8a93a5 !important;
+
+    font-size: 12px !important;
+
+    line-height: 1.5 !important;
+}
+
+
+/* =========================================================
+   SETTINGS GRID
+========================================================= */
+
+.attendance-settings-page .settings-grid {
+    width: 100% !important;
+
+    display: grid !important;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr)) !important;
+
+    gap: 20px !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* =========================================================
+   SETTINGS FIELD
+========================================================= */
+
+.attendance-settings-page .settings-field {
+    min-width: 0 !important;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    gap: 7px !important;
+}
+
+
+.attendance-settings-page .settings-field label {
+    display: block !important;
+
+    margin: 0 !important;
+
+    color: #3d4657 !important;
+
+    font-size: 13px !important;
+
+    font-weight: 650 !important;
+}
+
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+.attendance-settings-page .settings-field input,
+.attendance-settings-page .settings-field select {
+    width: 100% !important;
+
+    height: 45px !important;
+
+    padding: 0 13px !important;
+
+    box-sizing: border-box !important;
+
+    border: 1px solid #dfe4ec !important;
+
+    border-radius: 10px !important;
+
+    outline: none !important;
+
+    background: #ffffff !important;
+
+    color: #202938 !important;
+
+    font-size: 13px !important;
+
+    font-family: inherit !important;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease !important;
+}
+
+
+.attendance-settings-page .settings-field input:hover,
+.attendance-settings-page .settings-field select:hover {
+    border-color: #b9c2d0 !important;
+}
+
+
+.attendance-settings-page .settings-field input:focus,
+.attendance-settings-page .settings-field select:focus {
+    border-color: #0d9488 !important;
+
+    box-shadow:
+        0 0 0 3px rgba(13, 148, 136, 0.10) !important;
+}
+
+
+.attendance-settings-page .settings-field input::placeholder {
+    color: #adb5c2 !important;
+}
+
+
+/* =========================================================
+   NUMBER INPUT
+========================================================= */
+
+.attendance-settings-page .settings-field input[type="number"] {
+    appearance: textfield !important;
+}
+
+
+.attendance-settings-page .settings-field input[type="number"]::-webkit-inner-spin-button,
+.attendance-settings-page .settings-field input[type="number"]::-webkit-outer-spin-button {
+    opacity: 1 !important;
+}
+
+
+/* =========================================================
+   TIME INPUT
+========================================================= */
+
+.attendance-settings-page .settings-field input[type="time"] {
+    cursor: pointer !important;
+}
+
+
+/* =========================================================
+   INPUT WITH TEXT
+========================================================= */
+
+.attendance-settings-page .input-with-text {
+    position: relative !important;
+
+    width: 100% !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+}
+
+
+.attendance-settings-page .input-with-text input {
+    padding-right: 80px !important;
+}
+
+
+.attendance-settings-page .input-with-text span {
+    position: absolute !important;
+
+    right: 13px !important;
+
+    color: #8b94a4 !important;
+
+    font-size: 12px !important;
+
+    font-weight: 600 !important;
+
+    pointer-events: none !important;
+}
+
+
+/* =========================================================
+   TOGGLE ROW
+========================================================= */
+
+.attendance-settings-page .settings-toggle-row {
+    width: 100% !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: space-between !important;
+
+    gap: 15px !important;
+
+    padding: 15px !important;
+
+    box-sizing: border-box !important;
+
+    border: 1px solid #e7eaf0 !important;
+
+    border-radius: 12px !important;
+
+    background: #fafbfc !important;
+}
+
+
+.attendance-settings-page .settings-toggle-content {
+    flex: 1 !important;
+
+    min-width: 0 !important;
+}
+
+
+.attendance-settings-page .settings-toggle-title {
+    margin: 0 !important;
+
+    color: #273142 !important;
+
+    font-size: 14px !important;
+
+    font-weight: 650 !important;
+}
+
+
+.attendance-settings-page .settings-toggle-description {
+    margin: 4px 0 0 !important;
+
+    color: #8b94a4 !important;
+
+    font-size: 12px !important;
+
+    line-height: 1.5 !important;
+}
+
+
+/* =========================================================
+   SWITCH
+========================================================= */
+
+.attendance-settings-page .switch {
+    position: relative !important;
+
+    width: 48px !important;
+
+    height: 26px !important;
+
+    min-width: 48px !important;
+
+    flex-shrink: 0 !important;
+}
+
+
+.attendance-settings-page .switch input {
+    opacity: 0 !important;
+
+    width: 0 !important;
+
+    height: 0 !important;
+
+    position: absolute !important;
+}
+
+
+.attendance-settings-page .slider {
+    position: absolute !important;
+
+    inset: 0 !important;
+
+    cursor: pointer !important;
+
+    background: #d6dbe4 !important;
+
+    border-radius: 999px !important;
+
+    transition: 0.25s ease !important;
+}
+
+
+.attendance-settings-page .slider::before {
+    content: "" !important;
+
+    position: absolute !important;
+
+    width: 20px !important;
+
+    height: 20px !important;
+
+    left: 3px !important;
+
+    top: 3px !important;
+
+    background: #ffffff !important;
+
+    border-radius: 50% !important;
+
+    box-shadow:
+        0 2px 5px rgba(0, 0, 0, 0.18) !important;
+
+    transition: 0.25s ease !important;
+}
+
+
+.attendance-settings-page .switch input:checked+.slider {
+    background: #0d9488 !important;
+}
+
+
+.attendance-settings-page .switch input:checked+.slider::before {
+    transform: translateX(22px) !important;
+}
+
+
+/* =========================================================
+   WORKING DAYS
+   IMPORTANT:
+   JSX uses BUTTONS, not checkbox + label.
+========================================================= */
+
+.attendance-settings-page .working-days {
+    width: 100% !important;
+
+    display: grid !important;
+
+    grid-template-columns:
+        repeat(6, minmax(0, 1fr)) !important;
+
+    gap: 10px !important;
+
+    margin-top: 0 !important;
+
+    box-sizing: border-box !important;
+}
+
+
+.attendance-settings-page .working-day {
+    position: relative !important;
+
+    width: 100% !important;
+
+    min-height: 44px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    padding: 0 8px !important;
+
+    box-sizing: border-box !important;
+
+    border: 1px solid #dfe4ec !important;
+
+    border-radius: 10px !important;
+
+    background: #ffffff !important;
+
+    color: #687386 !important;
+
+    font-size: 12px !important;
+
+    font-weight: 650 !important;
+
+    cursor: pointer !important;
+
+    outline: none !important;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease !important;
+}
+
+
+.attendance-settings-page .working-day:hover {
+    border-color: #0d9488 !important;
+
+    color: #0d9488 !important;
+
+    background: #f0fdfa !important;
+
+    transform: translateY(-1px) !important;
+
+    box-shadow:
+        0 4px 10px rgba(13, 148, 136, 0.10) !important;
+}
+
+
+/* SELECTED DAY */
+
+.attendance-settings-page .working-day.active {
+    background:
+        linear-gradient(135deg,
+            #0d9488,
+            #0f766e) !important;
+
+    border-color: #0d9488 !important;
+
+    color: #ffffff !important;
+
+    box-shadow:
+        0 5px 12px rgba(13, 148, 136, 0.25) !important;
+
+    transform: translateY(-1px) !important;
+}
+
+
+.attendance-settings-page .working-day.active:hover {
+    background:
+        linear-gradient(135deg,
+            #0f766e,
+            #115e59) !important;
+
+    color: #ffffff !important;
+
+    border-color: #0f766e !important;
+}
+
+
+/* =========================================================
+   SAVE BUTTON
+========================================================= */
+
+.attendance-settings-page form>div[style*="justify-content"] {
+    display: flex !important;
+
+    justify-content: flex-end !important;
+
+    margin-top: 25px !important;
+}
+
+
+.attendance-settings-page form button[type="submit"] {
+    min-width: 150px !important;
+
+    height: 45px !important;
+
+    padding: 0 20px !important;
+
+    border: none !important;
+
+    border-radius: 10px !important;
+
+    background:
+        linear-gradient(135deg,
+            #0d9488,
+            #0f766e) !important;
+
+    color: #ffffff !important;
+
+    font-size: 14px !important;
+
+    font-weight: 650 !important;
+
+    cursor: pointer !important;
+
+    box-shadow:
+        0 5px 14px rgba(13, 148, 136, 0.22) !important;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease !important;
+}
+
+
+.attendance-settings-page form button[type="submit"]:hover {
+    transform: translateY(-1px) !important;
+
+    box-shadow:
+        0 8px 18px rgba(13, 148, 136, 0.28) !important;
+}
+
+
+.attendance-settings-page form button[type="submit"]:active {
+    transform: translateY(0) !important;
+}
+
+
+.attendance-settings-page form button[type="submit"]:disabled {
+    opacity: 0.65 !important;
+
+    cursor: not-allowed !important;
+
+    transform: none !important;
+
+    box-shadow: none !important;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.attendance-settings-page .settings-loading {
+    min-height: 350px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    color: #697386 !important;
+
+    font-size: 14px !important;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .attendance-settings-page {
+        padding: 24px !important;
+    }
+
+
+    .attendance-settings-page .settings-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+
+    .attendance-settings-page .working-days {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr)) !important;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .attendance-settings-page {
+        padding: 20px 16px !important;
+    }
+
+
+    .attendance-settings-page>div:first-child h2 {
+        font-size: 24px !important;
+    }
+
+
+    .attendance-settings-page .settings-card {
+        padding: 18px !important;
+
+        border-radius: 14px !important;
+    }
+
+
+    .attendance-settings-page .settings-grid {
+        grid-template-columns: 1fr !important;
+
+        gap: 16px !important;
+    }
+
+
+    .attendance-settings-page .settings-card-header {
+        margin-bottom: 18px !important;
+    }
+
+
+    .attendance-settings-page .working-days {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr)) !important;
+
+        gap: 8px !important;
+    }
+
+
+    .attendance-settings-page .working-day {
+        min-height: 42px !important;
+
+        font-size: 11px !important;
+    }
+
+
+    .attendance-settings-page form>div[style*="justify-content"] {
+        justify-content: stretch !important;
+
+        width: 100% !important;
+    }
+
+
+    .attendance-settings-page form button[type="submit"] {
+        width: 100% !important;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .attendance-settings-page {
+        padding: 16px 12px !important;
+    }
+
+
+    .attendance-settings-page>div:first-child h2 {
+        font-size: 21px !important;
+    }
+
+
+    .attendance-settings-page .settings-card {
+        padding: 16px !important;
+    }
+
+
+    .attendance-settings-page .settings-card-header h3 {
+        font-size: 16px !important;
+    }
+
+
+    .attendance-settings-page .settings-card-header p {
+        font-size: 11px !important;
+    }
+
+
+    .attendance-settings-page .working-days {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr)) !important;
+
+        gap: 8px !important;
+    }
+
+
+    .attendance-settings-page .working-day {
+        min-height: 42px !important;
+
+        font-size: 11px !important;
+    }
+
+
+    .attendance-settings-page .settings-toggle-row {
+        align-items: flex-start !important;
+    }
+
+}

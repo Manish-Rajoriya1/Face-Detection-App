@@ -1,0 +1,954 @@
+/* =========================================================
+   ADMIN ATTENDANCE PAGE
+   Exact CSS for AdminAttendance.jsx
+   ========================================================= */
+
+.admin-attendance-page {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 28px 30px !important;
+    box-sizing: border-box !important;
+    color: #172033 !important;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+   ========================================================= */
+
+.attendance-page-header {
+    width: 100% !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    justify-content: space-between !important;
+    gap: 20px !important;
+    margin-bottom: 24px !important;
+}
+
+.attendance-page-header h2 {
+    margin: 0 !important;
+    padding: 0 !important;
+
+    font-size: 28px !important;
+    line-height: 1.25 !important;
+    font-weight: 700 !important;
+
+    color: #172033 !important;
+    letter-spacing: -0.4px !important;
+}
+
+.attendance-page-header p {
+    margin: 7px 0 0 !important;
+    padding: 0 !important;
+
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+
+    color: #718096 !important;
+}
+
+
+/* =========================================================
+   REFRESH BUTTON
+   ========================================================= */
+
+.attendance-refresh-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+
+    height: 38px !important;
+    min-width: 96px !important;
+
+    padding: 0 15px !important;
+
+    border: 1px solid #d7dee8 !important;
+    border-radius: 7px !important;
+
+    background: #ffffff !important;
+    color: #344054 !important;
+
+    font-size: 13px !important;
+    font-weight: 600 !important;
+
+    cursor: pointer !important;
+
+    transition: all 0.2s ease !important;
+}
+
+.attendance-refresh-btn:hover {
+    border-color: #0d9488 !important;
+    background: #f0fdfa !important;
+    color: #0d9488 !important;
+}
+
+.attendance-refresh-btn:disabled {
+    opacity: 0.65 !important;
+    cursor: not-allowed !important;
+}
+
+.spin-icon {
+    animation: attendanceSpin 0.9s linear infinite !important;
+}
+
+@keyframes attendanceSpin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   SUMMARY CARDS
+   6 CARDS = ONE ROW
+   ========================================================= */
+
+.attendance-summary-grid {
+    width: 100% !important;
+
+    display: grid !important;
+
+    grid-template-columns:
+        repeat(6, minmax(0, 1fr)) !important;
+
+    gap: 14px !important;
+
+    margin-bottom: 22px !important;
+}
+
+.attendance-summary-card {
+    min-width: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+
+    gap: 12px !important;
+
+    min-height: 92px !important;
+
+    padding: 16px !important;
+
+    box-sizing: border-box !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #e5e9ef !important;
+    border-radius: 10px !important;
+
+    box-shadow:
+        0 2px 8px rgba(15, 23, 42, 0.04) !important;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease !important;
+}
+
+.attendance-summary-card:hover {
+    transform: translateY(-2px) !important;
+
+    box-shadow:
+        0 7px 18px rgba(15, 23, 42, 0.08) !important;
+}
+
+
+/* =========================================================
+   SUMMARY ICON
+   ========================================================= */
+
+.summary-icon {
+    width: 38px !important;
+    height: 38px !important;
+
+    min-width: 38px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    border-radius: 9px !important;
+
+    font-size: 15px !important;
+    font-weight: 700 !important;
+}
+
+
+/* Individual card icon colors */
+
+.attendance-summary-card.total .summary-icon {
+    background: #eef2ff !important;
+    color: #4f46e5 !important;
+}
+
+.attendance-summary-card.present .summary-icon {
+    background: #ecfdf3 !important;
+    color: #059669 !important;
+}
+
+.attendance-summary-card.late .summary-icon {
+    background: #fff7ed !important;
+    color: #ea580c !important;
+}
+
+.attendance-summary-card.absent .summary-icon {
+    background: #fef2f2 !important;
+    color: #dc2626 !important;
+}
+
+.attendance-summary-card.half .summary-icon {
+    background: #fffbeb !important;
+    color: #d97706 !important;
+}
+
+.attendance-summary-card.rate .summary-icon {
+    background: #eff6ff !important;
+    color: #2563eb !important;
+}
+
+
+/* =========================================================
+   SUMMARY TEXT
+   ========================================================= */
+
+.attendance-summary-card>div:last-child {
+    min-width: 0 !important;
+}
+
+.attendance-summary-card span {
+    display: block !important;
+
+    margin: 0 0 4px !important;
+
+    font-size: 12px !important;
+    line-height: 1.35 !important;
+    font-weight: 500 !important;
+
+    color: #667085 !important;
+
+    white-space: nowrap !important;
+}
+
+.attendance-summary-card strong {
+    display: block !important;
+
+    margin: 0 !important;
+
+    font-size: 23px !important;
+    line-height: 1.15 !important;
+    font-weight: 700 !important;
+
+    color: #172033 !important;
+}
+
+
+/* =========================================================
+   FILTER CARD
+   ========================================================= */
+
+.attendance-filter-card {
+    width: 100% !important;
+
+    display: flex !important;
+    align-items: flex-end !important;
+    flex-wrap: wrap !important;
+
+    gap: 14px !important;
+
+    padding: 16px !important;
+    margin-bottom: 18px !important;
+
+    box-sizing: border-box !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #e5e9ef !important;
+    border-radius: 10px !important;
+
+    box-shadow:
+        0 2px 8px rgba(15, 23, 42, 0.03) !important;
+}
+
+
+/* =========================================================
+   FILTER GROUP
+   ========================================================= */
+
+.filter-group {
+    display: flex !important;
+    flex-direction: column !important;
+
+    gap: 6px !important;
+
+    flex: 0 0 auto !important;
+}
+
+.filter-group label {
+    display: flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+
+    height: 18px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    font-size: 12px !important;
+    line-height: 1 !important;
+    font-weight: 600 !important;
+
+    color: #475467 !important;
+}
+
+.filter-group label svg {
+    font-size: 12px !important;
+    color: #667085 !important;
+}
+
+
+/* =========================================================
+   DATE INPUT
+   ========================================================= */
+
+.filter-group input[type="date"] {
+    width: 190px !important;
+    height: 38px !important;
+
+    padding: 0 10px !important;
+
+    box-sizing: border-box !important;
+
+    border: 1px solid #d7dee8 !important;
+    border-radius: 7px !important;
+
+    background: #ffffff !important;
+    color: #344054 !important;
+
+    font-family: inherit !important;
+    font-size: 13px !important;
+
+    outline: none !important;
+}
+
+.filter-group input[type="date"]:focus {
+    border-color: #0d9488 !important;
+
+    box-shadow:
+        0 0 0 3px rgba(13, 148, 136, 0.10) !important;
+}
+
+
+/* =========================================================
+   SEARCH FILTER
+   ========================================================= */
+
+.search-filter {
+    flex: 1 1 300px !important;
+    min-width: 250px !important;
+}
+
+.search-box {
+    position: relative !important;
+    width: 100% !important;
+}
+
+.search-box>svg {
+    position: absolute !important;
+
+    left: 12px !important;
+    top: 50% !important;
+
+    transform: translateY(-50%) !important;
+
+    font-size: 13px !important;
+
+    color: #98a2b3 !important;
+
+    pointer-events: none !important;
+}
+
+.search-box input {
+    width: 100% !important;
+    height: 38px !important;
+
+    padding: 0 12px 0 34px !important;
+
+    box-sizing: border-box !important;
+
+    border: 1px solid #d7dee8 !important;
+    border-radius: 7px !important;
+
+    background: #ffffff !important;
+    color: #344054 !important;
+
+    font-family: inherit !important;
+    font-size: 13px !important;
+
+    outline: none !important;
+}
+
+.search-box input::placeholder {
+    color: #98a2b3 !important;
+}
+
+.search-box input:focus {
+    border-color: #0d9488 !important;
+
+    box-shadow:
+        0 0 0 3px rgba(13, 148, 136, 0.10) !important;
+}
+
+
+/* =========================================================
+   STATUS SELECT
+   ========================================================= */
+
+.filter-group select {
+    width: 145px !important;
+    height: 38px !important;
+
+    padding: 0 30px 0 10px !important;
+
+    box-sizing: border-box !important;
+
+    border: 1px solid #d7dee8 !important;
+    border-radius: 7px !important;
+
+    background: #ffffff !important;
+    color: #344054 !important;
+
+    font-family: inherit !important;
+    font-size: 13px !important;
+
+    outline: none !important;
+}
+
+.filter-group select:focus {
+    border-color: #0d9488 !important;
+
+    box-shadow:
+        0 0 0 3px rgba(13, 148, 136, 0.10) !important;
+}
+
+
+/* =========================================================
+   SEARCH BUTTON
+   ========================================================= */
+
+.filter-search-btn {
+    height: 38px !important;
+
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    gap: 7px !important;
+
+    padding: 0 17px !important;
+
+    border: 1px solid #0d9488 !important;
+    border-radius: 7px !important;
+
+    background: #0d9488 !important;
+    color: #ffffff !important;
+
+    font-family: inherit !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+
+    cursor: pointer !important;
+
+    transition: all 0.2s ease !important;
+}
+
+.filter-search-btn:hover {
+    background: #0f766e !important;
+    border-color: #0f766e !important;
+}
+
+.filter-search-btn:disabled {
+    opacity: 0.65 !important;
+    cursor: not-allowed !important;
+}
+
+
+/* =========================================================
+   ERROR
+   ========================================================= */
+
+.attendance-error {
+    width: 100% !important;
+
+    box-sizing: border-box !important;
+
+    padding: 11px 14px !important;
+    margin-bottom: 16px !important;
+
+    border: 1px solid #fecaca !important;
+    border-radius: 7px !important;
+
+    background: #fef2f2 !important;
+
+    color: #b42318 !important;
+
+    font-size: 13px !important;
+}
+
+
+/* =========================================================
+   TABLE CARD
+   ========================================================= */
+
+.attendance-table-card {
+    width: 100% !important;
+
+    box-sizing: border-box !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #e5e9ef !important;
+    border-radius: 10px !important;
+
+    overflow: hidden !important;
+
+    box-shadow:
+        0 2px 8px rgba(15, 23, 42, 0.04) !important;
+}
+
+
+/* =========================================================
+   TABLE HEADER
+   ========================================================= */
+
+.table-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+
+    padding: 16px 18px !important;
+
+    border-bottom: 1px solid #edf0f4 !important;
+}
+
+.table-header h3 {
+    margin: 0 !important;
+    padding: 0 !important;
+
+    font-size: 18px !important;
+    line-height: 1.3 !important;
+    font-weight: 700 !important;
+
+    color: #172033 !important;
+}
+
+.table-header p {
+    margin: 4px 0 0 !important;
+    padding: 0 !important;
+
+    font-size: 12px !important;
+    color: #98a2b3 !important;
+}
+
+.table-header>span {
+    display: inline-flex !important;
+    align-items: center !important;
+
+    padding: 5px 9px !important;
+
+    border-radius: 5px !important;
+
+    background: #f2f4f7 !important;
+
+    color: #667085 !important;
+
+    font-size: 11px !important;
+    font-weight: 600 !important;
+}
+
+
+/* =========================================================
+   TABLE WRAPPER
+   ========================================================= */
+
+.attendance-table-wrapper {
+    width: 100% !important;
+
+    overflow-x: auto !important;
+}
+
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+.attendance-table {
+    width: 100% !important;
+    min-width: 850px !important;
+
+    border-collapse: collapse !important;
+    border-spacing: 0 !important;
+
+    table-layout: auto !important;
+}
+
+.attendance-table thead th {
+    padding: 12px 15px !important;
+
+    background: #f8fafc !important;
+
+    border-bottom: 1px solid #e5e9ef !important;
+
+    text-align: left !important;
+
+    font-size: 11px !important;
+    line-height: 1.3 !important;
+    font-weight: 700 !important;
+
+    color: #667085 !important;
+
+    text-transform: uppercase !important;
+    letter-spacing: 0.3px !important;
+
+    white-space: nowrap !important;
+}
+
+.attendance-table tbody td {
+    padding: 13px 15px !important;
+
+    border-bottom: 1px solid #f0f2f5 !important;
+
+    font-size: 13px !important;
+    line-height: 1.4 !important;
+
+    color: #344054 !important;
+
+    white-space: nowrap !important;
+}
+
+.attendance-table tbody tr:last-child td {
+    border-bottom: none !important;
+}
+
+.attendance-table tbody tr {
+    transition: background 0.15s ease !important;
+}
+
+.attendance-table tbody tr:hover {
+    background: #f9fbfc !important;
+}
+
+
+/* =========================================================
+   EMPLOYEE CELL
+   ========================================================= */
+
+.employee-cell {
+    display: flex !important;
+    align-items: center !important;
+
+    gap: 10px !important;
+}
+
+.employee-avatar {
+    width: 36px !important;
+    height: 36px !important;
+
+    min-width: 36px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    overflow: hidden !important;
+
+    border-radius: 50% !important;
+
+    background: #eef2ff !important;
+    border: 1px solid #dbe3f0 !important;
+
+    color: #4f46e5 !important;
+
+    font-size: 13px !important;
+    font-weight: 700 !important;
+}
+
+.employee-avatar img {
+    width: 100% !important;
+    height: 100% !important;
+
+    object-fit: cover !important;
+
+    display: block !important;
+}
+
+.employee-cell strong {
+    display: block !important;
+
+    margin: 0 !important;
+
+    font-size: 13px !important;
+    line-height: 1.3 !important;
+    font-weight: 600 !important;
+
+    color: #172033 !important;
+}
+
+.employee-cell small {
+    display: block !important;
+
+    margin-top: 3px !important;
+
+    font-size: 11px !important;
+    line-height: 1.2 !important;
+
+    color: #98a2b3 !important;
+}
+
+
+/* =========================================================
+   TIME
+   ========================================================= */
+
+.time-value {
+    font-size: 13px !important;
+    font-weight: 500 !important;
+
+    color: #475467 !important;
+}
+
+
+/* =========================================================
+   WORKING HOURS
+   ========================================================= */
+
+.attendance-table tbody td>strong {
+    font-size: 13px !important;
+    font-weight: 600 !important;
+
+    color: #344054 !important;
+}
+
+
+/* =========================================================
+   STATUS BADGES
+   ========================================================= */
+
+.attendance-status {
+    display: inline-flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    min-width: 70px !important;
+
+    padding: 5px 9px !important;
+
+    border-radius: 20px !important;
+
+    font-size: 11px !important;
+    line-height: 1.2 !important;
+    font-weight: 700 !important;
+
+    white-space: nowrap !important;
+}
+
+.status-present {
+    background: #ecfdf3 !important;
+    color: #027a48 !important;
+}
+
+.status-late {
+    background: #fffaeb !important;
+    color: #b54708 !important;
+}
+
+.status-half {
+    background: #fff7ed !important;
+    color: #c2410c !important;
+}
+
+.status-absent {
+    background: #fef2f2 !important;
+    color: #b42318 !important;
+}
+
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+.attendance-loading {
+    min-height: 220px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    gap: 10px !important;
+
+    color: #667085 !important;
+}
+
+.attendance-loading p {
+    margin: 0 !important;
+
+    font-size: 13px !important;
+}
+
+.loading-spinner {
+    width: 30px !important;
+    height: 30px !important;
+
+    border: 3px solid #e5e7eb !important;
+    border-top-color: #0d9488 !important;
+
+    border-radius: 50% !important;
+
+    animation: attendanceSpin 0.8s linear infinite !important;
+}
+
+
+/* =========================================================
+   EMPTY
+   ========================================================= */
+
+.attendance-empty {
+    min-height: 220px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    padding: 30px !important;
+
+    text-align: center !important;
+
+    color: #98a2b3 !important;
+}
+
+.attendance-empty>svg {
+    margin-bottom: 10px !important;
+
+    font-size: 28px !important;
+
+    color: #cbd5e1 !important;
+}
+
+.attendance-empty h4 {
+    margin: 0 0 5px !important;
+
+    font-size: 15px !important;
+    font-weight: 600 !important;
+
+    color: #475467 !important;
+}
+
+.attendance-empty p {
+    margin: 0 !important;
+
+    font-size: 12px !important;
+
+    color: #98a2b3 !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1350px) {
+
+    .attendance-summary-grid {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr)) !important;
+    }
+
+    .search-filter {
+        flex: 1 1 260px !important;
+    }
+}
+
+
+@media (max-width: 900px) {
+
+    .admin-attendance-page {
+        padding: 22px 20px !important;
+    }
+
+    .attendance-page-header h2 {
+        font-size: 24px !important;
+    }
+
+    .attendance-summary-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    .attendance-filter-card {
+        align-items: stretch !important;
+    }
+
+    .filter-group,
+    .search-filter {
+        width: 100% !important;
+        flex: 1 1 100% !important;
+    }
+
+    .filter-group input[type="date"],
+    .filter-group select,
+    .search-box {
+        width: 100% !important;
+    }
+
+    .filter-search-btn {
+        width: 100% !important;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .admin-attendance-page {
+        padding: 18px 14px !important;
+    }
+
+    .attendance-page-header {
+        flex-direction: column !important;
+        align-items: stretch !important;
+    }
+
+    .attendance-page-header h2 {
+        font-size: 22px !important;
+    }
+
+    .attendance-page-header p {
+        font-size: 13px !important;
+    }
+
+    .attendance-refresh-btn {
+        width: 100% !important;
+    }
+
+    .attendance-summary-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .attendance-summary-card {
+        min-height: 82px !important;
+    }
+
+    .table-header {
+        padding: 14px !important;
+    }
+
+    .table-header h3 {
+        font-size: 16px !important;
+    }
+}
