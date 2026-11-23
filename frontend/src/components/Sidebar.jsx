@@ -10,11 +10,11 @@ import {
     FaUserCog,
     FaClock,
     FaUmbrellaBeach,
-    FaBullhorn,
-    FaTimes
+    FaBullhorn
 } from "react-icons/fa";
 
 function Sidebar({ onCloseMobile }) {
+
     const handleLinkClick = () => {
         if (onCloseMobile) {
             onCloseMobile();
@@ -31,6 +31,7 @@ function Sidebar({ onCloseMobile }) {
             <div className="brand">
 
                 <div className="brand-left">
+
                     <div className="brand-icon">
                         <FaFingerprint />
                     </div>
@@ -39,17 +40,8 @@ function Sidebar({ onCloseMobile }) {
                         <h5>FaceAttend</h5>
                         <span>Attendance System</span>
                     </div>
-                </div>
 
-                {/* MOBILE CLOSE BUTTON */}
-                {/* <button
-                    type="button"
-                    className="admin-sidebar-close"
-                    onClick={onCloseMobile}
-                    aria-label="Close Sidebar"
-                >
-                    <FaTimes />
-                </button> */}
+                </div>
 
             </div>
 
@@ -67,7 +59,7 @@ function Sidebar({ onCloseMobile }) {
                 {/* DASHBOARD */}
 
                 <NavLink
-                    to="/"
+                    to="/admin"
                     end
                     onClick={handleLinkClick}
                     className={({ isActive }) =>
@@ -87,7 +79,7 @@ function Sidebar({ onCloseMobile }) {
                 {/* EMPLOYEES */}
 
                 <NavLink
-                    to="/employees"
+                    to="/admin/employees"
                     onClick={handleLinkClick}
                     className={({ isActive }) =>
                         isActive
@@ -106,7 +98,7 @@ function Sidebar({ onCloseMobile }) {
                 {/* REGISTER EMPLOYEE */}
 
                 <NavLink
-                    to="/register-employee"
+                    to="/admin/register-employee"
                     onClick={handleLinkClick}
                     className={({ isActive }) =>
                         isActive
@@ -125,7 +117,7 @@ function Sidebar({ onCloseMobile }) {
                 {/* ATTENDANCE */}
 
                 <NavLink
-                    to="/attendance"
+                    to="/admin/attendance"
                     onClick={handleLinkClick}
                     className={({ isActive }) =>
                         isActive
@@ -144,7 +136,7 @@ function Sidebar({ onCloseMobile }) {
                 {/* ATTENDANCE SETTINGS */}
 
                 <NavLink
-                    to="/attendance-settings"
+                    to="/admin/attendance-settings"
                     onClick={handleLinkClick}
                     className={({ isActive }) =>
                         isActive
@@ -163,7 +155,7 @@ function Sidebar({ onCloseMobile }) {
                 {/* LEAVE REQUESTS */}
 
                 <NavLink
-                    to="/leave-requests"
+                    to="/admin/leave-requests"
                     onClick={handleLinkClick}
                     className={({ isActive }) =>
                         isActive
@@ -179,12 +171,10 @@ function Sidebar({ onCloseMobile }) {
                 </NavLink>
 
 
-                {/* =================================================
-                            ANNOUNCEMENTS
-                    ================================================= */}
+                {/* ANNOUNCEMENTS */}
 
                 <NavLink
-                    to="/announcements"
+                    to="/admin/announcements"
                     onClick={handleLinkClick}
                     className={({ isActive }) =>
                         isActive
@@ -215,7 +205,7 @@ function Sidebar({ onCloseMobile }) {
                 {/* PROFILE SETTINGS */}
 
                 <NavLink
-                    to="/admin-profile"
+                    to="/admin/admin-profile"
                     onClick={handleLinkClick}
                     className={({ isActive }) =>
                         isActive

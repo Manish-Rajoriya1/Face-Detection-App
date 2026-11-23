@@ -23,13 +23,11 @@ import {
 import API from "../../services/api";
 import "./EmployeeDetails.css";
 
-
 function EmployeeDetails() {
 
     const { id } = useParams();
 
     const navigate = useNavigate();
-
 
     // ======================================================
     // EMPLOYEE
@@ -41,14 +39,12 @@ function EmployeeDetails() {
     const [loading, setLoading] =
         useState(true);
 
-
     // ======================================================
     // ACTION LOADING
     // ======================================================
 
     const [actionLoading, setActionLoading] =
         useState(false);
-
 
     // ======================================================
     // MODAL
@@ -61,7 +57,6 @@ function EmployeeDetails() {
         message: ""
     });
 
-
     // ======================================================
     // EDIT FORM
     // ======================================================
@@ -73,13 +68,11 @@ function EmployeeDetails() {
         department: ""
     });
 
-
     const [selectedImage, setSelectedImage] =
         useState(null);
 
     const [imagePreview, setImagePreview] =
         useState("");
-
 
     // ======================================================
     // PASSWORD
@@ -87,7 +80,6 @@ function EmployeeDetails() {
 
     const [temporaryPassword, setTemporaryPassword] =
         useState("");
-
 
     // ======================================================
     // TOAST
@@ -99,7 +91,6 @@ function EmployeeDetails() {
         title: "",
         message: ""
     });
-
 
     // ======================================================
     // ERROR MESSAGE
@@ -116,7 +107,6 @@ function EmployeeDetails() {
             fallback
         );
     };
-
 
     // ======================================================
     // TOAST
@@ -135,7 +125,6 @@ function EmployeeDetails() {
             message
         });
 
-
         setTimeout(() => {
 
             setToast((prev) => ({
@@ -145,7 +134,6 @@ function EmployeeDetails() {
 
         }, 3500);
     };
-
 
     // ======================================================
     // FETCH EMPLOYEE
@@ -159,17 +147,14 @@ function EmployeeDetails() {
 
             const response =
                 await API.get(
-                    `/employees/${id}`
+                    `/ employees / ${id} `
                 );
-
 
             const employeeData =
                 response.data.employee ||
                 response.data;
 
-
             setEmployee(employeeData);
-
 
             setEditForm({
                 employeeId:
@@ -185,13 +170,11 @@ function EmployeeDetails() {
                     employeeData.department || ""
             });
 
-
-            setImagePreview(
+            (
                 employeeData.profileImage
-                    ? `http://localhost:5000${employeeData.profileImage}`
+                    ? `${import.meta.env.VITE_API_BASE_URL}${employeeData.profileImage}`
                     : ""
             );
-
 
         } catch (error) {
 
@@ -199,7 +182,6 @@ function EmployeeDetails() {
                 "Employee details error:",
                 error
             );
-
 
             showToast(
                 "error",
@@ -210,13 +192,11 @@ function EmployeeDetails() {
                 )
             );
 
-
         } finally {
 
             setLoading(false);
         }
     };
-
 
     useEffect(() => {
 
@@ -224,8 +204,7 @@ function EmployeeDetails() {
 
     }, [id]);
 
-
-    // ======================================================
+    // ========setImagePreview==============================================
     // CLOSE MODAL
     // ======================================================
 
@@ -235,7 +214,6 @@ function EmployeeDetails() {
             return;
         }
 
-
         setModal({
             open: false,
             type: "",
@@ -243,10 +221,8 @@ function EmployeeDetails() {
             message: ""
         });
 
-
         setTemporaryPassword("");
     };
-
 
     // ======================================================
     // OPEN CONFIRM MODAL
@@ -265,7 +241,6 @@ function EmployeeDetails() {
             message
         });
     };
-
 
     // ======================================================
     // EDIT
@@ -287,16 +262,13 @@ function EmployeeDetails() {
                 employee.department || ""
         });
 
-
         setSelectedImage(null);
 
-
         setImagePreview(
-            employee.profileImage
-                ? `http://localhost:5000${employee.profileImage}`
+            employeeData.profileImage
+                ? `${import.meta.env.VITE_API_BASE_URL}${employeeData.profileImage}`
                 : ""
         );
-
 
         setModal({
             open: true,
@@ -305,7 +277,6 @@ function EmployeeDetails() {
             message: ""
         });
     };
-
 
     // ======================================================
     // IMAGE
@@ -316,11 +287,9 @@ function EmployeeDetails() {
         const file =
             event.target.files?.[0];
 
-
         if (!file) {
             return;
         }
-
 
         const allowedTypes = [
             "image/jpeg",
@@ -328,7 +297,6 @@ function EmployeeDetails() {
             "image/png",
             "image/webp"
         ];
-
 
         if (!allowedTypes.includes(file.type)) {
 
@@ -341,7 +309,6 @@ function EmployeeDetails() {
             return;
         }
 
-
         if (file.size > 5 * 1024 * 1024) {
 
             showToast(
@@ -353,15 +320,12 @@ function EmployeeDetails() {
             return;
         }
 
-
         setSelectedImage(file);
-
 
         setImagePreview(
             URL.createObjectURL(file)
         );
     };
-
 
     // ======================================================
     // EDIT INPUT
@@ -374,13 +338,11 @@ function EmployeeDetails() {
             value
         } = event.target;
 
-
         setEditForm((prev) => ({
             ...prev,
             [name]: value
         }));
     };
-
 
     // ======================================================
     // UPDATE EMPLOYEE
@@ -404,39 +366,32 @@ function EmployeeDetails() {
             return;
         }
 
-
         try {
 
             setActionLoading(true);
 
-
             const formData =
                 new FormData();
-
 
             formData.append(
                 "employeeId",
                 editForm.employeeId.trim()
             );
 
-
             formData.append(
                 "name",
                 editForm.name.trim()
             );
-
 
             formData.append(
                 "email",
                 editForm.email.trim()
             );
 
-
             formData.append(
                 "department",
                 editForm.department.trim()
             );
-
 
             if (selectedImage) {
 
@@ -445,7 +400,6 @@ function EmployeeDetails() {
                     selectedImage
                 );
             }
-
 
             const response =
                 await API.put(
@@ -459,7 +413,6 @@ function EmployeeDetails() {
                     }
                 );
 
-
             const updatedEmployee =
                 response.data.employee ||
                 {
@@ -467,11 +420,9 @@ function EmployeeDetails() {
                     ...editForm
                 };
 
-
             setEmployee(
                 updatedEmployee
             );
-
 
             setEditForm({
                 employeeId:
@@ -487,19 +438,15 @@ function EmployeeDetails() {
                     updatedEmployee.department || ""
             });
 
-
             setImagePreview(
                 updatedEmployee.profileImage
-                    ? `http://localhost:5000${updatedEmployee.profileImage}?t=${Date.now()}`
+                    ? `${import.meta.env.VITE_API_BASE_URL}${updatedEmployee.profileImage}?t=${Date.now()}`
                     : ""
             );
 
-
             setSelectedImage(null);
 
-
             closeModal();
-
 
             showToast(
                 "success",
@@ -507,14 +454,12 @@ function EmployeeDetails() {
                 "Employee details updated successfully."
             );
 
-
         } catch (error) {
 
             console.error(
                 "Update employee error:",
                 error
             );
-
 
             showToast(
                 "error",
@@ -525,13 +470,11 @@ function EmployeeDetails() {
                 )
             );
 
-
         } finally {
 
             setActionLoading(false);
         }
     };
-
 
     // ======================================================
     // STATUS
@@ -543,10 +486,8 @@ function EmployeeDetails() {
 
             setActionLoading(true);
 
-
             const newStatus =
                 !employee.isActive;
-
 
             const response =
                 await API.patch(
@@ -556,20 +497,16 @@ function EmployeeDetails() {
                     }
                 );
 
-
             const updatedStatus =
                 response.data.employee?.isActive ??
                 newStatus;
-
 
             setEmployee((prev) => ({
                 ...prev,
                 isActive: updatedStatus
             }));
 
-
             closeModal();
-
 
             showToast(
                 "success",
@@ -581,14 +518,12 @@ function EmployeeDetails() {
                     : `${employee.name} has been deactivated.`
             );
 
-
         } catch (error) {
 
             console.error(
                 "Status update error:",
                 error
             );
-
 
             showToast(
                 "error",
@@ -599,13 +534,11 @@ function EmployeeDetails() {
                 )
             );
 
-
         } finally {
 
             setActionLoading(false);
         }
     };
-
 
     // ======================================================
     // REMOVE FACE
@@ -617,20 +550,16 @@ function EmployeeDetails() {
 
             setActionLoading(true);
 
-
             await API.delete(
                 `/employees/admin/${employee._id}/face`
             );
-
 
             setEmployee((prev) => ({
                 ...prev,
                 faceEncodings: []
             }));
 
-
             closeModal();
-
 
             showToast(
                 "success",
@@ -638,14 +567,12 @@ function EmployeeDetails() {
                 "Employee face data has been removed."
             );
 
-
         } catch (error) {
 
             console.error(
                 "Remove face error:",
                 error
             );
-
 
             showToast(
                 "error",
@@ -656,13 +583,11 @@ function EmployeeDetails() {
                 )
             );
 
-
         } finally {
 
             setActionLoading(false);
         }
     };
-
 
     // ======================================================
     // RESET PASSWORD
@@ -674,17 +599,14 @@ function EmployeeDetails() {
 
             setActionLoading(true);
 
-
             const response =
                 await API.post(
                     `/employees/admin/${employee._id}/reset-password`
                 );
 
-
             setTemporaryPassword(
                 response.data.temporaryPassword
             );
-
 
             setModal({
                 open: true,
@@ -693,7 +615,6 @@ function EmployeeDetails() {
                 message: ""
             });
 
-
         } catch (error) {
 
             console.error(
@@ -701,9 +622,7 @@ function EmployeeDetails() {
                 error
             );
 
-
             closeModal();
-
 
             showToast(
                 "error",
@@ -714,13 +633,11 @@ function EmployeeDetails() {
                 )
             );
 
-
         } finally {
 
             setActionLoading(false);
         }
     };
-
 
     // ======================================================
     // DELETE
@@ -732,14 +649,11 @@ function EmployeeDetails() {
 
             setActionLoading(true);
 
-
             await API.delete(
                 `/employees/admin/${employee._id}`
             );
 
-
             closeModal();
-
 
             showToast(
                 "success",
@@ -747,13 +661,13 @@ function EmployeeDetails() {
                 `${employee.name} has been deleted successfully.`
             );
 
-
             setTimeout(() => {
 
-                navigate("/employees");
+                navigate(
+                    "/admin/employees"
+                );
 
             }, 900);
-
 
         } catch (error) {
 
@@ -761,7 +675,6 @@ function EmployeeDetails() {
                 "Delete employee error:",
                 error
             );
-
 
             showToast(
                 "error",
@@ -772,13 +685,11 @@ function EmployeeDetails() {
                 )
             );
 
-
         } finally {
 
             setActionLoading(false);
         }
     };
-
 
     // ======================================================
     // FACE CAPTURE
@@ -787,10 +698,9 @@ function EmployeeDetails() {
     const openFaceCapture = () => {
 
         navigate(
-            `/face-capture/${employee.employeeId}`
+            `/admin/face-capture/${employee.employeeId}`
         );
     };
-
 
     // ======================================================
     // CONFIRM ACTION
@@ -808,7 +718,6 @@ function EmployeeDetails() {
             return;
         }
 
-
         if (
             modal.type ===
             "remove-face"
@@ -818,7 +727,6 @@ function EmployeeDetails() {
 
             return;
         }
-
 
         if (
             modal.type ===
@@ -830,7 +738,6 @@ function EmployeeDetails() {
             return;
         }
 
-
         if (
             modal.type ===
             "delete"
@@ -841,7 +748,6 @@ function EmployeeDetails() {
             return;
         }
     };
-
 
     // ======================================================
     // LOADING
@@ -866,7 +772,6 @@ function EmployeeDetails() {
         );
     }
 
-
     // ======================================================
     // NOT FOUND
     // ======================================================
@@ -889,7 +794,7 @@ function EmployeeDetails() {
                     </p>
 
                     <Link
-                        to="/employees"
+                        to="/admin/employees"
                         className="details-back-btn"
                     >
                         <FaArrowLeft />
@@ -902,11 +807,9 @@ function EmployeeDetails() {
         );
     }
 
-
     return (
 
         <div className="employee-details-page">
-
 
             {/* ==================================================
                 TOAST
@@ -930,7 +833,6 @@ function EmployeeDetails() {
 
                     </div>
 
-
                     <button
                         type="button"
                         onClick={() =>
@@ -946,7 +848,6 @@ function EmployeeDetails() {
                 </div>
             )}
 
-
             {/* ==================================================
                 HEADER
             ================================================== */}
@@ -954,13 +855,12 @@ function EmployeeDetails() {
             <div className="employee-details-header">
 
                 <Link
-                    to="/employees"
+                    to="/admin/employees"
                     className="details-back-btn"
                 >
                     <FaArrowLeft />
                     Back to Employees
                 </Link>
-
 
                 <div className="details-header-text">
 
@@ -980,20 +880,18 @@ function EmployeeDetails() {
 
             </div>
 
-
             {/* ==================================================
                 PROFILE CARD
             ================================================== */}
 
             <div className="employee-profile-card">
 
-
                 <div className="employee-profile-avatar">
 
                     {employee.profileImage ? (
 
                         <img
-                            src={`http://localhost:5000${employee.profileImage}`}
+                            src={`${import.meta.env.VITE_API_BASE_URL}${employee.profileImage}`}
                             alt={employee.name}
                         />
 
@@ -1005,7 +903,6 @@ function EmployeeDetails() {
 
                 </div>
 
-
                 <div className="employee-profile-main">
 
                     <div className="employee-name-row">
@@ -1013,7 +910,6 @@ function EmployeeDetails() {
                         <h1>
                             {employee.name}
                         </h1>
-
 
                         {employee.isActive !== false ? (
 
@@ -1039,7 +935,6 @@ function EmployeeDetails() {
 
                     </div>
 
-
                     <p className="employee-profile-id">
 
                         <FaIdBadge />
@@ -1047,7 +942,6 @@ function EmployeeDetails() {
                         {employee.employeeId}
 
                     </p>
-
 
                     <p className="employee-profile-department">
 
@@ -1061,7 +955,6 @@ function EmployeeDetails() {
                 </div>
 
             </div>
-
 
             {/* ==================================================
                 INFORMATION
@@ -1085,9 +978,7 @@ function EmployeeDetails() {
 
                 </div>
 
-
                 <div className="employee-info-grid">
-
 
                     <div className="employee-info-item">
 
@@ -1103,7 +994,6 @@ function EmployeeDetails() {
 
                     </div>
 
-
                     <div className="employee-info-item">
 
                         <span>
@@ -1117,7 +1007,6 @@ function EmployeeDetails() {
                         </strong>
 
                     </div>
-
 
                     <div className="employee-info-item">
 
@@ -1133,7 +1022,6 @@ function EmployeeDetails() {
 
                     </div>
 
-
                     <div className="employee-info-item">
 
                         <span>
@@ -1147,7 +1035,6 @@ function EmployeeDetails() {
                         </strong>
 
                     </div>
-
 
                     <div className="employee-info-item">
 
@@ -1169,7 +1056,6 @@ function EmployeeDetails() {
                         </strong>
 
                     </div>
-
 
                     <div className="employee-info-item">
 
@@ -1195,7 +1081,6 @@ function EmployeeDetails() {
 
             </div>
 
-
             {/* ==================================================
                 ACTIONS
             ================================================== */}
@@ -1218,9 +1103,7 @@ function EmployeeDetails() {
 
                 </div>
 
-
                 <div className="employee-action-grid">
-
 
                     {/* EDIT */}
 
@@ -1249,7 +1132,6 @@ function EmployeeDetails() {
                         </div>
 
                     </button>
-
 
                     {/* RESET PASSWORD */}
 
@@ -1283,7 +1165,6 @@ function EmployeeDetails() {
 
                     </button>
 
-
                     {/* FACE */}
 
                     <button
@@ -1313,7 +1194,6 @@ function EmployeeDetails() {
                         </div>
 
                     </button>
-
 
                     {/* REMOVE FACE */}
 
@@ -1350,7 +1230,6 @@ function EmployeeDetails() {
                         </button>
 
                     )}
-
 
                     {/* STATUS */}
 
@@ -1394,7 +1273,6 @@ function EmployeeDetails() {
 
                 </div>
 
-
                 {/* DELETE */}
 
                 <button
@@ -1416,7 +1294,6 @@ function EmployeeDetails() {
                 </button>
 
             </div>
-
 
             {/* ==================================================
                 MODAL
@@ -1440,7 +1317,6 @@ function EmployeeDetails() {
 
                     <div className="employee-details-modal">
 
-
                         {/* MODAL HEADER */}
 
                         <div className="employee-details-modal-header">
@@ -1463,11 +1339,9 @@ function EmployeeDetails() {
 
                         </div>
 
-
                         {/* MODAL BODY */}
 
                         <div className="employee-details-modal-body">
-
 
                             {/* ==================================================
                                 EDIT
@@ -1476,7 +1350,6 @@ function EmployeeDetails() {
                             {modal.type === "edit" && (
 
                                 <div className="employee-edit-form">
-
 
                                     <div className="profile-image-upload">
 
@@ -1499,7 +1372,6 @@ function EmployeeDetails() {
 
                                         </div>
 
-
                                         <label className="image-upload-btn">
 
                                             <FaImage />
@@ -1516,16 +1388,13 @@ function EmployeeDetails() {
 
                                         </label>
 
-
                                         <small>
                                             JPG, PNG or WEBP • Max 5 MB
                                         </small>
 
                                     </div>
 
-
                                     <div className="details-form-grid">
-
 
                                         <div className="details-form-group">
 
@@ -1545,7 +1414,6 @@ function EmployeeDetails() {
 
                                         </div>
 
-
                                         <div className="details-form-group">
 
                                             <label>
@@ -1563,7 +1431,6 @@ function EmployeeDetails() {
                                             />
 
                                         </div>
-
 
                                         <div className="details-form-group">
 
@@ -1583,7 +1450,6 @@ function EmployeeDetails() {
                                             />
 
                                         </div>
-
 
                                         <div className="details-form-group">
 
@@ -1605,7 +1471,6 @@ function EmployeeDetails() {
 
                                     </div>
 
-
                                     <div className="employee-modal-actions">
 
                                         <button
@@ -1620,7 +1485,6 @@ function EmployeeDetails() {
                                         >
                                             Cancel
                                         </button>
-
 
                                         <button
                                             type="button"
@@ -1646,7 +1510,6 @@ function EmployeeDetails() {
                                 </div>
                             )}
 
-
                             {/* ==================================================
                                 PASSWORD RESULT
                             ================================================== */}
@@ -1660,22 +1523,18 @@ function EmployeeDetails() {
                                             <FaCheck />
                                         </div>
 
-
                                         <h3>
                                             Temporary Password
                                         </h3>
-
 
                                         <p>
                                             Give this temporary password
                                             to the employee.
                                         </p>
 
-
                                         <div className="temporary-password-box">
                                             {temporaryPassword}
                                         </div>
-
 
                                         <div className="password-warning-text">
 
@@ -1684,7 +1543,6 @@ function EmployeeDetails() {
                                             after login.
 
                                         </div>
-
 
                                         <button
                                             type="button"
@@ -1698,7 +1556,6 @@ function EmployeeDetails() {
 
                                     </div>
                                 )}
-
 
                             {/* ==================================================
                                 CONFIRMATION
@@ -1715,21 +1572,17 @@ function EmployeeDetails() {
 
                                     <div className="confirmation-content">
 
-
                                         <div className="confirmation-warning-icon">
 
                                             <FaExclamationTriangle />
 
                                         </div>
 
-
                                         <p>
                                             {modal.message}
                                         </p>
 
-
                                         <div className="employee-modal-actions">
-
 
                                             <button
                                                 type="button"
@@ -1743,7 +1596,6 @@ function EmployeeDetails() {
                                             >
                                                 Cancel
                                             </button>
-
 
                                             <button
                                                 type="button"
@@ -1790,6 +1642,5 @@ function EmployeeDetails() {
         </div>
     );
 }
-
 
 export default EmployeeDetails;

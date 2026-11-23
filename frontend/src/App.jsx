@@ -7,7 +7,6 @@ import {
   useNavigate
 } from "react-router-dom";
 
-
 import {
   FaBell,
   FaUserCircle,
@@ -47,6 +46,8 @@ import LeaveRequest from "./pages/employee/LeaveRequest";
 import LeaveRequests from "./pages/admin/LeaveRequests";
 import FaceCapture from "./pages/FaceCapture";
 import Announcements from "./pages/admin/Announcements";
+
+
 // ======================================================
 // ADMIN TOP NAVBAR
 // ======================================================
@@ -79,23 +80,39 @@ function AdminTopbar({ onToggleSidebar }) {
   // ======================================================
 
   const loadNotifications = async () => {
+
     try {
+
       setNotificationLoading(true);
 
       const response = await API.get("/notifications");
 
-      setNotifications(response.data.notifications || []);
-      setUnreadCount(response.data.unreadCount || 0);
+      setNotifications(
+        response.data.notifications || []
+      );
+
+      setUnreadCount(
+        response.data.unreadCount || 0
+      );
 
     } catch (error) {
-      console.error("Notification loading error:", error);
+
+      console.error(
+        "Notification loading error:",
+        error
+      );
+
     } finally {
+
       setNotificationLoading(false);
+
     }
+
   };
 
 
   useEffect(() => {
+
     loadNotifications();
 
     const interval = setInterval(() => {
@@ -103,45 +120,68 @@ function AdminTopbar({ onToggleSidebar }) {
     }, 10000);
 
     return () => clearInterval(interval);
+
   }, []);
 
 
   const markNotificationRead = async (notification) => {
+
     try {
 
       if (!notification.isRead) {
+
         await API.patch(
           `/notifications/${notification._id}/read`
         );
+
       }
 
       setNotifications((prev) =>
         prev.map((item) =>
           item._id === notification._id
-            ? { ...item, isRead: true }
+            ? {
+              ...item,
+              isRead: true
+            }
             : item
         )
       );
 
       if (!notification.isRead) {
-        setUnreadCount((prev) => Math.max(prev - 1, 0));
+
+        setUnreadCount(
+          (prev) => Math.max(prev - 1, 0)
+        );
+
       }
 
       if (notification.type === "leave_request") {
+
         setShowNotifications(false);
-        navigate("/leave-requests");
+
+        navigate("/admin/leave-requests");
+
       }
 
     } catch (error) {
-      console.error("Mark notification read error:", error);
+
+      console.error(
+        "Mark notification read error:",
+        error
+      );
+
     }
+
   };
 
 
   const markAllNotificationsRead = async () => {
+
     try {
 
-      await API.patch("/notifications/read-all");
+      await API.patch(
+        "/notifications/read-all"
+      );
 
       setNotifications((prev) =>
         prev.map((item) => ({
@@ -153,11 +193,14 @@ function AdminTopbar({ onToggleSidebar }) {
       setUnreadCount(0);
 
     } catch (error) {
+
       console.error(
         "Mark all notifications error:",
         error
       );
+
     }
+
   };
 
 
@@ -167,10 +210,18 @@ function AdminTopbar({ onToggleSidebar }) {
 
   const handleLogout = () => {
 
-    localStorage.removeItem("adminToken");
-    localStorage.removeItem("adminUser");
+    localStorage.removeItem(
+      "adminToken"
+    );
 
-    window.location.replace("/admin-login");
+    localStorage.removeItem(
+      "adminUser"
+    );
+
+    window.location.replace(
+      "/admin-login"
+    );
+
   };
 
 
@@ -179,7 +230,9 @@ function AdminTopbar({ onToggleSidebar }) {
       <header className="topbar">
 
         {/* LEFT SECTION WITH MOBILE TOGGLE & SEARCH */}
+
         <div className="topbar-left-section">
+
           {/* <button
             type="button"
             className="admin-mobile-toggle"
@@ -190,13 +243,18 @@ function AdminTopbar({ onToggleSidebar }) {
           </button> */}
 
           {/* SEARCH */}
+
           <div className="topbar-search">
+
             <FaSearch />
+
             <input
               type="text"
               placeholder="Search..."
             />
+
           </div>
+
         </div>
 
 
@@ -205,7 +263,7 @@ function AdminTopbar({ onToggleSidebar }) {
         <div className="topbar-right">
 
           {/* ==================================================
-                    NOTIFICATION
+                        NOTIFICATION
               ================================================== */}
 
           <div
@@ -221,11 +279,15 @@ function AdminTopbar({ onToggleSidebar }) {
               type="button"
               className="notification-btn"
               onClick={() => {
-                setShowNotifications((prev) => !prev);
+
+                setShowNotifications(
+                  (prev) => !prev
+                );
 
                 if (!showNotifications) {
                   loadNotifications();
                 }
+
               }}
               aria-label="Notifications"
               style={{
@@ -233,9 +295,11 @@ function AdminTopbar({ onToggleSidebar }) {
                 cursor: "pointer"
               }}
             >
+
               <FaBell />
 
               {unreadCount > 0 && (
+
                 <span
                   style={{
                     position: "absolute",
@@ -257,15 +321,20 @@ function AdminTopbar({ onToggleSidebar }) {
                     boxSizing: "border-box"
                   }}
                 >
-                  {unreadCount > 99 ? "99+" : unreadCount}
+                  {unreadCount > 99
+                    ? "99+"
+                    : unreadCount}
                 </span>
+
               )}
+
             </button>
 
 
             {/* NOTIFICATION DROPDOWN */}
 
             {showNotifications && (
+
               <div
                 style={{
                   position: "absolute",
@@ -291,11 +360,13 @@ function AdminTopbar({ onToggleSidebar }) {
                     alignItems: "center",
                     justifyContent: "space-between",
                     padding: "16px 18px",
-                    borderBottom: "1px solid #edf0f5"
+                    borderBottom:
+                      "1px solid #edf0f5"
                   }}
                 >
 
                   <div>
+
                     <h4
                       style={{
                         margin: 0,
@@ -318,12 +389,17 @@ function AdminTopbar({ onToggleSidebar }) {
                         ? `${unreadCount} unread`
                         : "All caught up"}
                     </span>
+
                   </div>
 
+
                   {unreadCount > 0 && (
+
                     <button
                       type="button"
-                      onClick={markAllNotificationsRead}
+                      onClick={
+                        markAllNotificationsRead
+                      }
                       style={{
                         border: "none",
                         background: "transparent",
@@ -335,6 +411,7 @@ function AdminTopbar({ onToggleSidebar }) {
                     >
                       Mark all as read
                     </button>
+
                   )}
 
                 </div>
@@ -378,6 +455,7 @@ function AdminTopbar({ onToggleSidebar }) {
                         textAlign: "center"
                       }}
                     >
+
                       <FaBell
                         style={{
                           fontSize: "24px",
@@ -394,127 +472,149 @@ function AdminTopbar({ onToggleSidebar }) {
                         No notifications
                       </strong>
 
-                      <span style={{ fontSize: "11px" }}>
+                      <span
+                        style={{
+                          fontSize: "11px"
+                        }}
+                      >
                         You're all caught up.
                       </span>
+
                     </div>
 
                   ) : (
 
-                    notifications.map((notification) => (
-                      <button
-                        type="button"
-                        key={notification._id}
-                        onClick={() =>
-                          markNotificationRead(notification)
-                        }
-                        style={{
-                          width: "100%",
-                          display: "flex",
-                          alignItems: "flex-start",
-                          gap: "12px",
-                          position: "relative",
-                          padding: "14px 16px",
-                          border: "none",
-                          borderBottom: "1px solid #f0f2f6",
-                          background: notification.isRead
-                            ? "#fff"
-                            : "#f5f7ff",
-                          textAlign: "left",
-                          cursor: "pointer",
-                          boxSizing: "border-box"
-                        }}
-                      >
+                    notifications.map(
+                      (notification) => (
 
-                        <div
+                        <button
+                          type="button"
+                          key={notification._id}
+                          onClick={() =>
+                            markNotificationRead(
+                              notification
+                            )
+                          }
                           style={{
-                            width: "34px",
-                            height: "34px",
-                            flexShrink: 0,
-                            borderRadius: "50%",
+                            width: "100%",
                             display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            background: "#edf0ff",
-                            color: "#526dff",
-                            fontSize: "14px"
+                            alignItems:
+                              "flex-start",
+                            gap: "12px",
+                            position: "relative",
+                            padding: "14px 16px",
+                            border: "none",
+                            borderBottom:
+                              "1px solid #f0f2f6",
+                            background:
+                              notification.isRead
+                                ? "#fff"
+                                : "#f5f7ff",
+                            textAlign: "left",
+                            cursor: "pointer",
+                            boxSizing: "border-box"
                           }}
                         >
-                          <FaBell />
-                        </div>
 
-                        <div
-                          style={{
-                            flex: 1,
-                            minWidth: 0,
-                            paddingRight: "8px"
-                          }}
-                        >
-
-                          <strong
+                          <div
                             style={{
-                              display: "block",
-                              color: "#1d2939",
-                              fontSize: "12px",
-                              marginBottom: "4px"
-                            }}
-                          >
-                            {notification.title}
-                          </strong>
-
-                          <p
-                            style={{
-                              margin: 0,
-                              color: "#667085",
-                              fontSize: "11px",
-                              lineHeight: "1.5"
-                            }}
-                          >
-                            {notification.message}
-                          </p>
-
-                          <span
-                            style={{
-                              display: "block",
-                              marginTop: "6px",
-                              color: "#98a2b3",
-                              fontSize: "9px"
-                            }}
-                          >
-                            {new Date(
-                              notification.createdAt
-                            ).toLocaleString("en-IN", {
-                              day: "2-digit",
-                              month: "short",
-                              year: "numeric",
-                              hour: "2-digit",
-                              minute: "2-digit"
-                            })}
-                          </span>
-
-                        </div>
-
-                        {!notification.isRead && (
-                          <span
-                            style={{
-                              width: "8px",
-                              height: "8px",
+                              width: "34px",
+                              height: "34px",
                               flexShrink: 0,
-                              background: "#526dff",
                               borderRadius: "50%",
-                              marginTop: "5px"
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              background: "#edf0ff",
+                              color: "#526dff",
+                              fontSize: "14px"
                             }}
-                          ></span>
-                        )}
+                          >
+                            <FaBell />
+                          </div>
 
-                      </button>
-                    ))
+
+                          <div
+                            style={{
+                              flex: 1,
+                              minWidth: 0,
+                              paddingRight: "8px"
+                            }}
+                          >
+
+                            <strong
+                              style={{
+                                display: "block",
+                                color: "#1d2939",
+                                fontSize: "12px",
+                                marginBottom: "4px"
+                              }}
+                            >
+                              {notification.title}
+                            </strong>
+
+                            <p
+                              style={{
+                                margin: 0,
+                                color: "#667085",
+                                fontSize: "11px",
+                                lineHeight: "1.5"
+                              }}
+                            >
+                              {notification.message}
+                            </p>
+
+                            <span
+                              style={{
+                                display: "block",
+                                marginTop: "6px",
+                                color: "#98a2b3",
+                                fontSize: "9px"
+                              }}
+                            >
+                              {new Date(
+                                notification.createdAt
+                              ).toLocaleString(
+                                "en-IN",
+                                {
+                                  day: "2-digit",
+                                  month: "short",
+                                  year: "numeric",
+                                  hour: "2-digit",
+                                  minute: "2-digit"
+                                }
+                              )}
+                            </span>
+
+                          </div>
+
+
+                          {!notification.isRead && (
+
+                            <span
+                              style={{
+                                width: "8px",
+                                height: "8px",
+                                flexShrink: 0,
+                                background: "#526dff",
+                                borderRadius: "50%",
+                                marginTop: "5px"
+                              }}
+                            ></span>
+
+                          )}
+
+                        </button>
+
+                      )
+                    )
 
                   )}
 
                 </div>
 
               </div>
+
             )}
 
           </div>
@@ -527,7 +627,7 @@ function AdminTopbar({ onToggleSidebar }) {
             {adminUser?.profileImage ? (
 
               <img
-                src={`http://localhost:5000${adminUser.profileImage}`}
+                src={`${import.meta.env.VITE_API_BASE_URL}${adminUser.profileImage}`}
                 alt="Admin"
                 style={{
                   width: "38px",
@@ -564,7 +664,9 @@ function AdminTopbar({ onToggleSidebar }) {
           <button
             type="button"
             className="logout-btn"
-            onClick={() => setShowLogout(true)}
+            onClick={() =>
+              setShowLogout(true)
+            }
           >
 
             <FaSignOutAlt />
@@ -582,87 +684,85 @@ function AdminTopbar({ onToggleSidebar }) {
 
       {/* ==================================================
                         LOGOUT MODAL
-                ================================================== */}
+          ================================================== */}
 
-      {
-        showLogout && (
+      {showLogout && (
+
+        <div
+          className="logout-modal-overlay"
+          onClick={() =>
+            setShowLogout(false)
+          }
+        >
 
           <div
-            className="logout-modal-overlay"
-            onClick={() => setShowLogout(false)}
+            className="logout-modal"
+            onClick={(e) =>
+              e.stopPropagation()
+            }
           >
 
-            <div
-              className="logout-modal"
-              onClick={(e) =>
-                e.stopPropagation()
+            {/* CLOSE */}
+
+            <button
+              type="button"
+              className="logout-modal-close"
+              onClick={() =>
+                setShowLogout(false)
               }
             >
+              <FaTimes />
+            </button>
 
-              {/* CLOSE */}
+
+            {/* ICON */}
+
+            <div className="logout-modal-icon">
+              <FaSignOutAlt />
+            </div>
+
+
+            <h3>
+              Logout?
+            </h3>
+
+
+            <p>
+              Are you sure you want to
+              logout from the Admin panel?
+            </p>
+
+
+            {/* ACTIONS */}
+
+            <div className="logout-modal-actions">
 
               <button
                 type="button"
-                className="logout-modal-close"
+                className="logout-cancel-btn"
                 onClick={() =>
                   setShowLogout(false)
                 }
               >
-                <FaTimes />
+                Cancel
               </button>
 
 
-              {/* ICON */}
-
-              <div className="logout-modal-icon">
-
-                <FaSignOutAlt />
-
-              </div>
-
-
-              <h3>
-                Logout?
-              </h3>
-
-
-              <p>
-                Are you sure you want to
-                logout from the Admin panel?
-              </p>
-
-
-              {/* ACTIONS */}
-
-              <div className="logout-modal-actions">
-
-                <button
-                  type="button"
-                  className="logout-cancel-btn"
-                  onClick={() =>
-                    setShowLogout(false)
-                  }
-                >
-                  Cancel
-                </button>
-
-
-                <button
-                  type="button"
-                  className="logout-confirm-btn"
-                  onClick={handleLogout}
-                >
-                  Logout
-                </button>
-
-              </div>
+              <button
+                type="button"
+                className="logout-confirm-btn"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
 
             </div>
 
           </div>
 
-        )
-      }
+        </div>
+
+      )}
 
     </>
   );
@@ -670,66 +770,72 @@ function AdminTopbar({ onToggleSidebar }) {
 
 
 // ======================================================
-// ADMIN ATTENDANCE PLACEHOLDER
-// ======================================================
-
-// function AdminAttendance() {
-
-//   return (
-
-//     <div className="page-container">
-
-//       <div className="placeholder-page">
-
-//         <h2>
-//           Attendance
-//         </h2>
-
-//         <p>
-//           Admin Attendance Management will be
-//           available here.
-//         </p>
-
-//       </div>
-
-//     </div>
-
-//   );
-// }
-
-
-// ======================================================
 // ADMIN LAYOUT
 // ======================================================
 
 function AdminLayout() {
-  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const [mobileOpen, setMobileOpen] =
+    useState(false);
 
   return (
+
     <div className="app-layout">
+
       {/* MOBILE BACKDROP OVERLAY */}
+
       {mobileOpen && (
+
         <div
           className="admin-sidebar-overlay"
-          onClick={() => setMobileOpen(false)}
+          onClick={() =>
+            setMobileOpen(false)
+          }
         />
+
       )}
 
+
       {/* SIDEBAR WRAPPER */}
-      <div className={`admin-sidebar-wrapper ${mobileOpen ? "open" : ""}`}>
-        <Sidebar onCloseMobile={() => setMobileOpen(false)} />
+
+      <div
+        className={`admin-sidebar-wrapper ${mobileOpen ? "open" : ""
+          }`}
+      >
+
+        <Sidebar
+          onCloseMobile={() =>
+            setMobileOpen(false)
+          }
+        />
+
       </div>
 
+
       {/* MAIN CONTENT */}
+
       <main className="main-content">
+
         {/* TOP NAVBAR */}
-        <AdminTopbar onToggleSidebar={() => setMobileOpen((prev) => !prev)} />
+
+        <AdminTopbar
+          onToggleSidebar={() =>
+            setMobileOpen(
+              (prev) => !prev
+            )
+          }
+        />
 
         {/* PAGE CONTENT */}
+
         <div className="admin-page-content">
+
           <Outlet />
+
         </div>
+
       </main>
+
     </div>
   );
 }
@@ -746,8 +852,23 @@ function App() {
     <Routes>
 
       {/* ==================================================
-                        ADMIN LOGIN
-                ================================================== */}
+                    DEFAULT ROUTE
+          ================================================== */}
+
+      <Route
+        path="/"
+        element={
+          <Navigate
+            to="/employee-login"
+            replace
+          />
+        }
+      />
+
+
+      {/* ==================================================
+                    ADMIN LOGIN
+          ================================================== */}
 
       <Route
         path="/admin-login"
@@ -758,8 +879,8 @@ function App() {
 
 
       {/* ==================================================
-                        EMPLOYEE LOGIN
-                ================================================== */}
+                    EMPLOYEE LOGIN
+          ================================================== */}
 
       <Route
         path="/employee-login"
@@ -770,17 +891,28 @@ function App() {
 
 
       {/* ==================================================
-                        EMPLOYEE CHANGE PASSWORD
-                ================================================== */}
+                    EMPLOYEE CHANGE PASSWORD
+          ================================================== */}
 
       <Route
-        path="/employee/change-password"
         element={
-          <EmployeeChangePassword />
+          <EmployeeProtectedRoute />
         }
-      />
+      >
+
+        <Route
+          path="/employee/change-password"
+          element={
+            <EmployeeChangePassword />
+          }
+        />
+
+      </Route>
 
 
+      {/* ==================================================
+                    ADMIN PANEL
+          ================================================== */}
 
       <Route
         element={
@@ -789,13 +921,14 @@ function App() {
       >
 
         <Route
-          path="/"
+          path="/admin"
           element={
             <AdminLayout />
           }
         >
 
           {/* Admin Dashboard */}
+
           <Route
             index
             element={
@@ -805,6 +938,7 @@ function App() {
 
 
           {/* Employees */}
+
           <Route
             path="employees"
             element={
@@ -814,6 +948,7 @@ function App() {
 
 
           {/* Employee Details */}
+
           <Route
             path="employees/:id"
             element={
@@ -823,6 +958,7 @@ function App() {
 
 
           {/* Register Employee */}
+
           <Route
             path="register-employee"
             element={
@@ -830,12 +966,19 @@ function App() {
             }
           />
 
+
+          {/* Face Capture */}
+
           <Route
-            path="/face-capture/:employeeId"
-            element={<FaceCapture />}
+            path="face-capture/:employeeId"
+            element={
+              <FaceCapture />
+            }
           />
 
+
           {/* Attendance */}
+
           <Route
             path="attendance"
             element={
@@ -843,18 +986,39 @@ function App() {
             }
           />
 
+
+          {/* Attendance Settings */}
+
           <Route
-            path="/leave-requests"
-            element={<LeaveRequests />}
+            path="attendance-settings"
+            element={
+              <AttendanceSettings />
+            }
           />
 
 
+          {/* Leave Requests */}
+
           <Route
-            path="/announcements"
-            element={<Announcements />}
+            path="leave-requests"
+            element={
+              <LeaveRequests />
+            }
           />
+
+
+          {/* Announcements */}
+
+          <Route
+            path="announcements"
+            element={
+              <Announcements />
+            }
+          />
+
 
           {/* Admin Profile */}
+
           <Route
             path="admin-profile"
             element={
@@ -867,10 +1031,9 @@ function App() {
       </Route>
 
 
-
       {/* ==================================================
-                        EMPLOYEE PANEL
-                ================================================== */}
+                    EMPLOYEE PANEL
+          ================================================== */}
 
       <Route
         element={
@@ -927,14 +1090,24 @@ function App() {
             }
           />
 
-          <Route
-            path="/employee/settings"
-            element={<EmployeeAttendanceSettings />}
-          />
+
+          {/* Employee Attendance Settings */}
 
           <Route
-            path="/employees/:id"
-            element={<EmployeeDetails />}
+            path="settings"
+            element={
+              <EmployeeAttendanceSettings />
+            }
+          />
+
+
+          {/* Employee Details */}
+
+          <Route
+            path="employees/:id"
+            element={
+              <EmployeeDetails />
+            }
           />
 
 
@@ -956,6 +1129,10 @@ function App() {
               <MonthlySummary />
             }
           />
+
+
+          {/* Leave Request */}
+
           <Route
             path="leave-request"
             element={
@@ -963,130 +1140,26 @@ function App() {
             }
           />
 
-          {/* Employee Settings */}
-
-          <Route
-            path="settings"
-            element={
-
-              <div className="placeholder-page">
-
-                <h2>
-                  Account Settings
-                </h2>
-
-                <p>
-                  Account settings will be
-                  available here.
-                </p>
-
-              </div>
-
-            }
-          />
-
         </Route>
 
       </Route>
 
 
       {/* ==================================================
-                        ADMIN PANEL
-                ================================================== */}
-
-      <Route
-        element={
-          <ProtectedRoute />
-        }
-      >
-
-        <Route
-          path="/"
-          element={
-            <AdminLayout />
-          }
-        >
-
-          {/* Admin Dashboard */}
-
-          <Route
-            index
-            element={
-              <Dashboard />
-            }
-          />
-
-
-          {/* Employees */}
-
-          <Route
-            path="employees"
-            element={
-              <Employees />
-            }
-          />
-
-
-          {/* Register Employee */}
-
-          <Route
-            path="register-employee"
-            element={
-              <RegisterEmployee />
-            }
-          />
-
-
-          {/* Attendance */}
-
-          <Route
-            path="attendance"
-            element={
-              <AdminAttendance />
-            }
-          />
-
-
-          {/* Attendance Settings */}
-
-          <Route
-            path="attendance-settings"
-            element={
-              <AttendanceSettings />
-            }
-          />
-
-
-          {/* Admin Profile */}
-
-          <Route
-            path="admin-profile"
-            element={
-              <AdminProfile />
-            }
-          />
-
-        </Route>
-
-      </Route>
-
-
-      {/* ==================================================
-                        FALLBACK
-                ================================================== */}
+                    FALLBACK
+          ================================================== */}
 
       <Route
         path="*"
         element={
           <Navigate
-            to="/admin-login"
+            to="/employee-login"
             replace
           />
         }
       />
 
     </Routes>
-
   );
 }
 

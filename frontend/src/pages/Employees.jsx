@@ -20,8 +20,6 @@ import {
     FaUserCircle
 } from "react-icons/fa";
 
-import "./Employees.css";
-
 function Employees() {
 
     // ======================================================
@@ -231,7 +229,7 @@ function Employees() {
 
         setImagePreview(
             employee.profileImage
-                ? `http://localhost:5000${employee.profileImage}`
+                ? `${import.meta.env.VITE_API_BASE_URL}${employee.profileImage}`
                 : ""
         );
 
@@ -729,6 +727,7 @@ function Employees() {
                                     handleImageChange
                                 }
                             />
+
                         </label>
 
                         <small>
@@ -1049,7 +1048,7 @@ function Employees() {
                     </button>
 
                     <Link
-                        to="/register-employee"
+                        to="/admin/register-employee"
                         className="refresh-btn add-employee-link"
                     >
                         <FaUserPlus />
@@ -1186,7 +1185,7 @@ function Employees() {
 
                                                         <img
                                                             className="employee-avatar"
-                                                            src={`http://localhost:5000${employee.profileImage}`}
+                                                            src={`${import.meta.env.VITE_API_BASE_URL}${employee.profileImage}`}
                                                             alt={
                                                                 employee.name
                                                             }
@@ -1265,106 +1264,10 @@ function Employees() {
 
                                                 <td>
 
-                                                    {/* <div className="employee-actions">
-
-                                                        <button
-                                                            className="action-btn edit"
-                                                            title="Edit Employee"
-                                                            onClick={() =>
-                                                                openEditModal(
-                                                                    employee
-                                                                )
-                                                            }
-                                                        >
-                                                            <FaEdit />
-                                                        </button>
-
-                                                        <button
-                                                            className="action-btn status"
-                                                            title={
-                                                                employee.isActive !== false
-                                                                    ? "Deactivate"
-                                                                    : "Activate"
-                                                            }
-                                                            onClick={() =>
-                                                                openConfirmModal(
-                                                                    "status",
-                                                                    employee.isActive !== false
-                                                                        ? "Deactivate Employee?"
-                                                                        : "Activate Employee?",
-                                                                    employee.isActive !== false
-                                                                        ? `Are you sure you want to deactivate ${employee.name}?`
-                                                                        : `Are you sure you want to activate ${employee.name}?`,
-                                                                    employee
-                                                                )
-                                                            }
-                                                        >
-                                                            <FaPowerOff />
-                                                        </button>
-
-                                                        {employee.faceEncodings?.length > 0 && (
-
-                                                            <button
-                                                                className="action-btn face"
-                                                                title="Remove Face"
-                                                                onClick={() =>
-                                                                    openConfirmModal(
-                                                                        "remove-face",
-                                                                        "Remove Face Data?",
-                                                                        `Are you sure you want to remove face data for ${employee.name}?`,
-                                                                        employee
-                                                                    )
-                                                                }
-                                                            >
-                                                                <FaCamera />
-                                                            </button>
-
-                                                        )}
-
-                                                        <button
-                                                            className="action-btn password"
-                                                            title="Reset Password"
-                                                            onClick={() =>
-                                                                openConfirmModal(
-                                                                    "reset-password",
-                                                                    "Reset Password?",
-                                                                    `A new temporary password will be generated for ${employee.name}.`,
-                                                                    employee
-                                                                )
-                                                            }
-                                                        >
-                                                            <FaKey />
-                                                        </button>
-
-                                                        <Link
-                                                            to={`/face-capture/${employee.employeeId}`}
-                                                            className="action-btn register-face"
-                                                            title="Register Face"
-                                                        >
-                                                            <FaCamera />
-                                                        </Link>
-
-                                                        <button
-                                                            className="action-btn delete"
-                                                            title="Delete Employee"
-                                                            onClick={() =>
-                                                                openConfirmModal(
-                                                                    "delete",
-                                                                    "Delete Employee?",
-                                                                    `Are you sure you want to permanently delete ${employee.name} (${employee.employeeId})? Attendance records will be preserved.`,
-                                                                    employee
-                                                                )
-                                                            }
-                                                        >
-                                                            <FaTrash />
-                                                        </button>
-
-                                                    </div> */}
-
                                                     <div className="employee-actions">
 
                                                         <Link
-                                                            to={`/employees/${employee._id}`}
+                                                            to={`/admin/employees/${employee._id}`}
                                                             className="employee-view-profile-btn"
                                                         >
                                                             View Profile

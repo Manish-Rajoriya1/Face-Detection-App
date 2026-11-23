@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import employeeAPI from "../../services/employeeApi";
 import "./EmployeeAttendance.css";
 
-const FACE_SERVICE_URL = "http://127.0.0.1:8000";
+const FACE_SERVICE_URL =
+    import.meta.env.VITE_FACE_SERVICE_URL;
 
 const EmployeeAttendance = () => {
     const [attendance, setAttendance] = useState(null);

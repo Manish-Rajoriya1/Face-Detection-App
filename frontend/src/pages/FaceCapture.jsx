@@ -1,7 +1,7 @@
-
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+
 import {
     FaCamera,
     FaCheckCircle,
@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa";
 
 function FaceCapture() {
+
     const { employeeId } = useParams();
     const navigate = useNavigate();
 
@@ -18,37 +19,70 @@ function FaceCapture() {
     const canvasRef = useRef(null);
     const streamRef = useRef(null);
 
-    const [cameraActive, setCameraActive] = useState(false);
-    const [images, setImages] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [message, setMessage] = useState("");
-    const [error, setError] = useState("");
+    const [cameraActive, setCameraActive] =
+        useState(false);
+
+    const [images, setImages] =
+        useState([]);
+
+    const [loading, setLoading] =
+        useState(false);
+
+    const [message, setMessage] =
+        useState("");
+
+    const [error, setError] =
+        useState("");
 
     const startCamera = async () => {
+
         try {
+
             setError("");
 
-            const stream = await navigator.mediaDevices.getUserMedia({
-                video: {
-                    width: { ideal: 640 },
-                    height: { ideal: 480 },
-                    facingMode: "user"
-                },
-                audio: false
-            });
+            const stream =
+                await navigator.mediaDevices.getUserMedia({
+                    video: {
+                        width: {
+                            ideal: 640
+                        },
+                        height: {
+                            ideal: 480
+                        },
+                        facingMode: "user"
+                    },
+                    audio: false
+                });
 
-            streamRef.current = stream;
+            streamRef.current =
+                stream;
+
             setCameraActive(true);
 
         } catch (err) {
-            console.error("Camera Error:", err);
-            setError("Camera start nahi ho paya: " + err.message);
+
+            console.error(
+                "Camera Error:",
+                err
+            );
+
+            setError(
+                "Camera start nahi ho paya: " +
+                err.message
+            );
         }
     };
 
     const stopCamera = () => {
+
         if (streamRef.current) {
-            streamRef.current.getTracks().forEach((track) => track.stop());
+
+            streamRef.current
+                .getTracks()
+                .forEach((track) => {
+                    track.stop();
+                });
+
             streamRef.current = null;
         }
 
@@ -56,70 +90,150 @@ function FaceCapture() {
     };
 
     useEffect(() => {
-        if (cameraActive && videoRef.current && streamRef.current) {
-            videoRef.current.srcObject = streamRef.current;
 
-            videoRef.current.play().catch((err) => {
-                console.error("Video Play Error:", err);
-                setError("Video display nahi ho raha: " + err.message);
-            });
+        if (
+            cameraActive &&
+            videoRef.current &&
+            streamRef.current
+        ) {
+
+            videoRef.current.srcObject =
+                streamRef.current;
+
+            videoRef.current
+                .play()
+                .catch((err) => {
+
+                    console.error(
+                        "Video Play Error:",
+                        err
+                    );
+
+                    setError(
+                        "Video display nahi ho raha: " +
+                        err.message
+                    );
+                });
         }
+
     }, [cameraActive]);
 
-    const captureSample = () => {
-        const video = videoRef.current;
-        const canvas = canvasRef.current;
+    useEffect(() => {
 
-        if (!video || !canvas || video.readyState < 2) {
-            setError("Camera ready nahi hai. Thoda wait karo.");
+        return () => {
+            stopCamera();
+        };
+
+    }, []);
+
+    const captureSample = () => {
+
+        const video =
+            videoRef.current;
+
+        const canvas =
+            canvasRef.current;
+
+        if (
+            !video ||
+            !canvas ||
+            video.readyState < 2
+        ) {
+
+            setError(
+                "Camera ready nahi hai. Thoda wait karo."
+            );
+
             return;
         }
 
         if (images.length >= 15) {
-            setError("15 samples already captured.");
+
+            setError(
+                "15 samples already captured."
+            );
+
             return;
         }
 
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
+        canvas.width =
+            video.videoWidth;
 
-        const context = canvas.getContext("2d");
-        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        canvas.height =
+            video.videoHeight;
 
-        const imageData = canvas.toDataURL("image/jpeg", 0.85);
+        const context =
+            canvas.getContext("2d");
 
-        setImages((previous) => [...previous, imageData]);
+        context.drawImage(
+            video,
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+
+        const imageData =
+            canvas.toDataURL(
+                "image/jpeg",
+                0.85
+            );
+
+        setImages((previous) => [
+            ...previous,
+            imageData
+        ]);
+
         setError("");
-        setMessage(`Sample ${images.length + 1} captured successfully.`);
+
+        setMessage(
+            `Sample ${images.length + 1} captured successfully.`
+        );
     };
 
     const resetSamples = () => {
+
         setImages([]);
+
         setError("");
-        setMessage("Samples reset. Capture again.");
+
+        setMessage(
+            "Samples reset. Capture again."
+        );
     };
 
     const submitRegistration = async () => {
+
         if (images.length !== 15) {
-            setError("Please capture all 15 samples first.");
+
+            setError(
+                "Please capture all 15 samples first."
+            );
+
             return;
         }
 
         try {
-            setLoading(true);
-            setError("");
-            setMessage("Processing face samples. Please wait...");
 
-            const response = await axios.post(
-                "http://127.0.0.1:8000/register-face",
-                {
-                    employeeId,
-                    images
-                },
-                {
-                    timeout: 300000
-                }
+            setLoading(true);
+
+            setError("");
+
+            setMessage(
+                "Processing face samples. Please wait..."
             );
+
+            const response =
+                await axios.post(
+                    `${import.meta.env.VITE_FACE_SERVICE_URL}/register-face`,
+                    {
+                        employeeId,
+                        images
+                    },
+                    {
+                        timeout: 300000
+                    }
+                );
 
             setMessage(
                 `Success! ${response.data.samples} face samples registered for ${employeeId}.`
@@ -128,15 +242,34 @@ function FaceCapture() {
             stopCamera();
 
             setTimeout(() => {
-                navigate("/employees");
+
+                navigate(
+                    "/admin/employees"
+                );
+
             }, 1800);
 
         } catch (err) {
-            console.error("FACE REGISTRATION ERROR:", err);
 
-            console.log("Response Data:", err.response?.data);
-            console.log("Status Code:", err.response?.status);
-            console.log("Error Message:", err.message);
+            console.error(
+                "FACE REGISTRATION ERROR:",
+                err
+            );
+
+            console.log(
+                "Response Data:",
+                err.response?.data
+            );
+
+            console.log(
+                "Status Code:",
+                err.response?.status
+            );
+
+            console.log(
+                "Error Message:",
+                err.message
+            );
 
             const errorMessage =
                 err.response?.data?.detail ||
@@ -145,12 +278,19 @@ function FaceCapture() {
                 "Unknown error";
 
             setError(
-                typeof errorMessage === "string"
+                typeof errorMessage ===
+                    "string"
                     ? errorMessage
-                    : JSON.stringify(errorMessage)
+                    : JSON.stringify(
+                        errorMessage
+                    )
             );
 
             setMessage("");
+
+        } finally {
+
+            setLoading(false);
         }
     };
 
@@ -158,34 +298,61 @@ function FaceCapture() {
         <div className="face-capture-page">
 
             <div className="page-heading">
+
                 <div>
-                    <h2>Face Registration</h2>
-                    <p>Capture 15 face samples for employee recognition.</p>
+
+                    <h2>
+                        Face Registration
+                    </h2>
+
+                    <p>
+                        Capture 15 face samples
+                        for employee recognition.
+                    </p>
+
                 </div>
 
                 <button
                     className="refresh-btn"
-                    onClick={() => navigate("/employees")}
+                    onClick={() =>
+                        navigate(
+                            "/admin/employees"
+                        )
+                    }
                 >
-                    <FaArrowLeft /> Back to Employees
+                    <FaArrowLeft />
+                    Back to Employees
                 </button>
+
             </div>
 
             <div className="face-register-card">
 
                 <div className="face-register-heading">
+
                     <div className="register-icon">
                         <FaUser />
                     </div>
 
                     <div>
-                        <h4>Employee: {employeeId}</h4>
-                        <p>Keep your face clearly visible in the camera.</p>
+
+                        <h4>
+                            Employee: {employeeId}
+                        </h4>
+
+                        <p>
+                            Keep your face clearly
+                            visible in the camera.
+                        </p>
+
                     </div>
+
                 </div>
 
                 <div className="face-camera-container">
+
                     {cameraActive ? (
+
                         <video
                             ref={videoRef}
                             autoPlay
@@ -193,99 +360,195 @@ function FaceCapture() {
                             muted
                             className="face-video"
                         />
+
                     ) : (
+
                         <div className="face-camera-placeholder">
+
                             <FaCamera />
-                            <h4>Camera Preview</h4>
-                            <p>Start camera to capture employee face samples.</p>
+
+                            <h4>
+                                Camera Preview
+                            </h4>
+
+                            <p>
+                                Start camera to capture
+                                employee face samples.
+                            </p>
+
                         </div>
+
                     )}
+
                 </div>
 
-                <canvas ref={canvasRef} style={{ display: "none" }} />
+                <canvas
+                    ref={canvasRef}
+                    style={{
+                        display: "none"
+                    }}
+                />
 
                 <div className="sample-progress">
+
                     <div className="sample-progress-heading">
-                        <strong>Captured Samples</strong>
-                        <span>{images.length} / 15</span>
+
+                        <strong>
+                            Captured Samples
+                        </strong>
+
+                        <span>
+                            {images.length} / 15
+                        </span>
+
                     </div>
 
                     <div className="sample-progress-track">
+
                         <div
                             className="sample-progress-fill"
-                            style={{ width: `${(images.length / 15) * 100}%` }}
+                            style={{
+                                width:
+                                    `${(images.length / 15) * 100}% `
+                            }}
                         />
+
                     </div>
 
                     <div className="sample-grid">
-                        {Array.from({ length: 15 }).map((_, index) => (
-                            <div
-                                key={index}
-                                className={
-                                    index < images.length
-                                        ? "sample-box captured"
-                                        : "sample-box"
-                                }
-                            >
-                                {index < images.length ? <FaCheckCircle /> : index + 1}
-                            </div>
-                        ))}
+
+                        {Array
+                            .from({
+                                length: 15
+                            })
+                            .map(
+                                (_, index) => (
+
+                                    <div
+                                        key={index}
+                                        className={
+                                            index <
+                                                images.length
+                                                ? "sample-box captured"
+                                                : "sample-box"
+                                        }
+                                    >
+
+                                        {index <
+                                            images.length ? (
+                                            <FaCheckCircle />
+                                        ) : (
+                                            index + 1
+                                        )}
+
+                                    </div>
+
+                                )
+                            )}
+
                     </div>
+
                 </div>
 
                 {message && (
-                    <div className="face-message">{message}</div>
+
+                    <div className="face-message">
+                        {message}
+                    </div>
+
                 )}
 
                 {error && (
-                    <div className="face-error">{error}</div>
+
+                    <div className="face-error">
+                        {error}
+                    </div>
+
                 )}
 
                 <div className="face-capture-actions">
 
                     {!cameraActive ? (
+
                         <button
                             className="save-btn"
-                            onClick={startCamera}
+                            onClick={
+                                startCamera
+                            }
+                            disabled={loading}
                         >
-                            <FaCamera /> Start Camera
+                            <FaCamera />
+                            Start Camera
                         </button>
+
                     ) : (
+
                         <button
                             className="save-btn"
-                            onClick={captureSample}
-                            disabled={images.length >= 15 || loading}
+                            onClick={
+                                captureSample
+                            }
+                            disabled={
+                                images.length >= 15 ||
+                                loading
+                            }
                         >
-                            <FaCamera /> Capture Sample ({images.length}/15)
+                            <FaCamera />
+
+                            Capture Sample (
+                            {images.length}/15)
                         </button>
+
                     )}
 
                     <button
                         className="cancel-btn"
-                        onClick={resetSamples}
-                        disabled={images.length === 0 || loading}
+                        onClick={
+                            resetSamples
+                        }
+                        disabled={
+                            images.length === 0 ||
+                            loading
+                        }
                     >
-                        <FaRedo /> Reset Samples
+                        <FaRedo />
+                        Reset Samples
                     </button>
 
                     <button
                         className="save-btn"
-                        onClick={submitRegistration}
-                        disabled={images.length !== 15 || loading}
+                        onClick={
+                            submitRegistration
+                        }
+                        disabled={
+                            images.length !== 15 ||
+                            loading
+                        }
                     >
+
                         <FaCheckCircle />
-                        {loading ? "Processing..." : "Register Face"}
+
+                        {loading
+                            ? "Processing..."
+                            : "Register Face"}
+
                     </button>
 
                 </div>
 
                 <p className="face-instruction">
-                    Capture each sample with a small change in head angle or distance.
-                    Keep your face visible, well-lit and inside the camera frame.
-                    Only capture your own face with your consent.
+
+                    Capture each sample with a
+                    small change in head angle or
+                    distance. Keep your face visible,
+                    well-lit and inside the camera
+                    frame. Only capture your own face
+                    with your consent.
+
                 </p>
 
             </div>
+
         </div>
     );
 }

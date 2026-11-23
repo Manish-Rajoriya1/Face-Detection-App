@@ -599,13 +599,10 @@ function AdminAttendance() {
 
                                                             <img
                                                                 src={
-                                                                    `http://localhost:5000${item.profileImage}`
+                                                                    `${import.meta.env.VITE_API_BASE_URL}${item.profileImage}`
                                                                 }
-                                                                alt={
-                                                                    item.name
-                                                                }
+                                                                alt={item.name}
                                                             />
-
                                                         ) : (
 
                                                             <span>

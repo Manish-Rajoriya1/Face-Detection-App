@@ -15,7 +15,7 @@ import {
 
 import API from "../../services/api";
 
-const IMAGE_BASE_URL = "http://localhost:5000";
+const IMAGE_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 function AdminProfile() {
     const navigate = useNavigate();

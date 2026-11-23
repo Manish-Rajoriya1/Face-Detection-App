@@ -119,7 +119,7 @@ function AdminLogin() {
                 JSON.stringify(user)
             );
 
-            navigate("/", { replace: true });
+            navigate("/admin", { replace: true });
 
         } catch (err) {
 

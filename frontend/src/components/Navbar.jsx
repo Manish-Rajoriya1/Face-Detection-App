@@ -104,7 +104,7 @@ function Navbar() {
             if (!notification.isRead) {
 
                 await API.patch(
-                    `/notifications/${notification._id}/read`
+                    `/ notifications / ${notification._id}/read`
                 );
 
             }
@@ -128,7 +128,7 @@ function Navbar() {
 
             setShowNotifications(false);
 
-            navigate("/leave-requests");
+            navigate("/admin/leave-requests");
 
         } catch (error) {
 
@@ -137,7 +137,7 @@ function Navbar() {
                 error
             );
 
-            navigate("/leave-requests");
+            navigate("/admin/leave-requests");
 
         }
     };
@@ -421,8 +421,9 @@ function Navbar() {
                                             setShowNotifications(
                                                 false
                                             );
+
                                             navigate(
-                                                "/leave-requests"
+                                                "/admin/leave-requests"
                                             );
                                         }}
                                     >
@@ -447,7 +448,7 @@ function Navbar() {
                         {adminData.profileImage ? (
 
                             <img
-                                src={`http://localhost:5000${adminData.profileImage}`}
+                                src={`${import.meta.env.VITE_API_BASE_URL}${adminData.profileImage}`}
                                 alt="Admin"
                                 className="navbar-profile-image"
                             />

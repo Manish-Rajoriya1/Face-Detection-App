@@ -787,7 +787,7 @@ function LeaveRequests() {
 
                                                             <img
                                                                 src={
-                                                                    `http://localhost:5000${request.employee.profileImage}`
+                                                                    `${import.meta.env.VITE_API_BASE_URL}${request.employee.profileImage}`
                                                                 }
                                                                 alt={
                                                                     request.employeeName ||

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const employeeAPI = axios.create({
-    baseURL: "http://localhost:5000/api",
+    baseURL: import.meta.env.VITE_API_URL,
     headers: {
         "Content-Type": "application/json"
     }
@@ -19,7 +19,7 @@ employeeAPI.interceptors.request.use(
 
         if (token) {
             config.headers.Authorization =
-                `Bearer ${token}`;
+                `Bearer ${token} `;
         }
 
         return config;

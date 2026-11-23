@@ -55,7 +55,7 @@ function Dashboard() {
     const fetchStats = async () => {
         try {
             const response = await axios.get(
-                "http://localhost:5000/api/employees"
+                `${import.meta.env.VITE_API_BASE_URL}/employees`
             );
 
             const employees = Array.isArray(response.data)
@@ -162,7 +162,7 @@ function Dashboard() {
             const image = canvas.toDataURL("image/jpeg", 0.75);
 
             const response = await axios.post(
-                "http://127.0.0.1:8000/recognize",
+                `${import.meta.env.VITE_FACE_SERVICE_URL}/recognize`,
                 { image },
                 { timeout: 30000 }
             );
