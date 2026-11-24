@@ -7,3 +7,4 @@ requests==2.34.2
 pydantic==2.14.1
 onnxruntime==1.31.1
 retina-face==0.0.19
+werkzeug
